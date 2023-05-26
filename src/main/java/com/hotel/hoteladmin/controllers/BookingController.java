@@ -1,7 +1,10 @@
 package com.hotel.hoteladmin.controllers;
 
+import com.hotel.hoteladmin.DButils.DButils;
 import com.hotel.hoteladmin.DButils.DataBaseConnection;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,10 +27,18 @@ public class BookingController implements Initializable {
     @FXML
     private TextField tf_user_id;
 
+    @FXML
+    private Button btn_lastUserId;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        tf_user_id.setText(Integer.toString( SignUpController.generatedId));
+        btn_lastUserId.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                tf_user_id.setText(Integer.toString(DButils.getLastUserId()));
+            }
+        });
 
 
 

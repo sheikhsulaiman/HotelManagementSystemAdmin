@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneSwitcher {
+
+    public static void closeWindow(ActionEvent event){
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.hide();
+    }
     public static void changeScene(ActionEvent event,String fxmlFile,String title){
         Parent root = null;
         FXMLLoader loader = new FXMLLoader(SceneSwitcher.class.getResource(fxmlFile));

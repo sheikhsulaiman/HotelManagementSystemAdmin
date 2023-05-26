@@ -2,6 +2,7 @@ package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
 import com.hotel.hoteladmin.DButils.DataBaseConnection;
+import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -55,8 +56,7 @@ public class SignUpController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 DButils.resigterByAdmin(tf_firstname.getText(),tf_lastname.getText(),Integer.parseInt(tf_phone.getText()),cb_gender.getValue(),tf_email.getText(), ta_address.getText());
-                generatedId = DButils.getLastUserId();
-                l_idShow.setText("ID: "+Integer.toString(DButils.getLastUserId()));
+                SceneSwitcher.closeWindow(event);
             }
         });
 

@@ -20,7 +20,8 @@ public class DButils {
             insertStatement.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("SQL Exception");
+            e.printStackTrace();
+            //System.out.println("SQL Exception");
         }
     }
 
@@ -34,7 +35,6 @@ public class DButils {
             ResultSet resultSet = getLastIdStatement.executeQuery("SELECT id FROM users WHERE ROWID IN ( SELECT max( ROWID ) FROM users)" );
 
                 id=resultSet.getInt("id");
-                System.out.println(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
