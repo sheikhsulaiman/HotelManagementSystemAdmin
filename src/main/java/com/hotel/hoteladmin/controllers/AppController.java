@@ -1,14 +1,20 @@
 package com.hotel.hoteladmin.controllers;
 
+import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
-public class AppController {
-    @FXML
-    private Label welcomeText;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AppController implements Initializable {
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private Button btn_newbooking;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        btn_newbooking.setOnAction(event -> SceneSwitcher.changeScene(event,"../booking.fxml","New Booking"));
     }
 }
