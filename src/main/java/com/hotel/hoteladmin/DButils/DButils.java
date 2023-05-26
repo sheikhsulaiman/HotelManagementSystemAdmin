@@ -26,6 +26,26 @@ public class DButils {
         }
     }
 
+    public static ArrayList<String> getVacentRooms(String roomType){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        ArrayList<String> list = new ArrayList<>(9);
+
+//        String connectQuery = "SELECT DISTINCT type FROM rooms";
+        try {
+            PreparedStatement getRoomsStm = connectDB.prepareStatement("select number from rooms where type=? and status='vacant'");
+            getRoomsStm.setString(1,roomType);
+            ResultSet resultSet = getRoomsStm.executeQuery();
+            while (resultSet.next()){
+                list.add(Integer.toString(resultSet.getInt("number")));
+            }
+        } catch (SQLException e) {
+            System.out.println("SQL Exception");
+        }
+        return list;
+    }
+
     public static ArrayList<String> getRoomType(){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();

@@ -43,9 +43,18 @@ public class BookingController implements Initializable {
             }
         });
 
-        cb_roomType.getItems().addAll(DButils.getRoomType());
 
         // new user scene switch
         btn_newuser.setOnAction(event -> SceneSwitcher.changeSceneToNewWindow("../signup.fxml","New Registration"));
+        cb_roomType.getItems().addAll(DButils.getRoomType());
+        //cb_roomNo.getItems().addAll(DButils.getVacentRooms(cb_roomType.getValue()));
+        //String selectedRoomType = cb_roomType.getValue();
+        cb_roomType.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                cb_roomNo.getItems().addAll(DButils.getVacentRooms(cb_roomType.getValue()));
+            }
+        });
+
     }
 }
