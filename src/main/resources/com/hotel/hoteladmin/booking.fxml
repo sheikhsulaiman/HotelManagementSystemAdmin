@@ -36,5 +36,11 @@
             <FontIcon iconLiteral="fltfal-channel-arrow-left-20" iconSize="20" />
          </graphic>
       </Button>
+      <ChoiceBox fx:id="cb_roomNo" layoutX="170.0" layoutY="127.0" prefWidth="150.0" />
+      <Label layoutX="38.0" layoutY="125.0" text="Room No.">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

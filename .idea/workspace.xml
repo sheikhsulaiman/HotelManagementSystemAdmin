@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/SceneSwitcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -106,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685062729690</updated>
       <workItem from="1685062730728" duration="14816000" />
-      <workItem from="1685094210171" duration="2835000" />
+      <workItem from="1685094210171" duration="3669000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -150,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685082025692</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add last registered user id retrive button">
+      <created>1685097272909</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1685097272909</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +170,7 @@
     <MESSAGE value="connect sqlite and roomType" />
     <MESSAGE value="start working on ID in booking" />
     <MESSAGE value="finish new user registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish new user registration" />
+    <MESSAGE value="add last registered user id retrive button" />
+    <option name="LAST_COMMIT_MESSAGE" value="add last registered user id retrive button" />
   </component>
 </project>

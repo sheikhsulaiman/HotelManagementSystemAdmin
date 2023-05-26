@@ -30,6 +30,9 @@ public class BookingController implements Initializable {
     @FXML
     private Button btn_lastUserId;
 
+    @FXML
+    private ChoiceBox<String> cb_roomNo;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -40,28 +43,7 @@ public class BookingController implements Initializable {
             }
         });
 
-
-
-        DataBaseConnection dbConnection = new DataBaseConnection();
-        Connection connectDB = dbConnection.getDatabaseLink();
-
-        String connectQuery = "SELECT DISTINCT type FROM rooms";
-
-        try{
-            Statement statement = connectDB.createStatement();
-            ResultSet resultSet = statement.executeQuery(connectQuery);
-
-            String type="";
-            while (resultSet.next()){
-                type = resultSet.getString("type");
-
-                cb_roomType.getItems().add(type);
-            }
-
-
-        } catch (SQLException e) {
-            System.out.println("SQL Exception");
-        }
+        cb_roomType.getItems().addAll(DButils.getRoomType());
 
         // new user scene switch
         btn_newuser.setOnAction(event -> SceneSwitcher.changeSceneToNewWindow("../signup.fxml","New Registration"));

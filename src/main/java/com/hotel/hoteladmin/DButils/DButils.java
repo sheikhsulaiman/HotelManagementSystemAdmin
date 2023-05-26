@@ -1,6 +1,7 @@
 package com.hotel.hoteladmin.DButils;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DButils {
     public static void resigterByAdmin(String firstname,String lastname,int phone,String gender,String email,String address){
@@ -23,6 +24,25 @@ public class DButils {
             e.printStackTrace();
             //System.out.println("SQL Exception");
         }
+    }
+
+    public static ArrayList<String> getRoomType(){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        String connectQuery = "SELECT DISTINCT type FROM rooms";
+        ArrayList<String> list = new ArrayList<>(3);
+
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet resultSet = statement.executeQuery(connectQuery);
+            while (resultSet.next()){
+                list.add(resultSet.getString("type"));
+            }
+        } catch (SQLException e) {
+            System.out.println("SQL Exception");
+        }
+        return list;
     }
 
     public static int getLastUserId(){
