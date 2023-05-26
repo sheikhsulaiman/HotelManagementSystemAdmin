@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/SignUpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/signup.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/SceneSwitcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -47,7 +52,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Program Files/Java/jdk-20/lib/src.zip",
+    "last_opened_file_path": "C:/Program Files/Java/openjfx-20.0.1_windows-x64_bin-sdk/javafx-sdk-20.0.1/lib/javafx.web.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -96,7 +101,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685062729690</updated>
-      <workItem from="1685062730728" duration="5707000" />
+      <workItem from="1685062730728" duration="14745000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -126,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685065206900</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="start working on ID in booking">
+      <created>1685072454212</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685072454212</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +150,7 @@
     <MESSAGE value="create-changescene-in-sceneswitch-class" />
     <MESSAGE value="start working with new booking" />
     <MESSAGE value="connect sqlite and roomType" />
-    <option name="LAST_COMMIT_MESSAGE" value="connect sqlite and roomType" />
+    <MESSAGE value="start working on ID in booking" />
+    <option name="LAST_COMMIT_MESSAGE" value="start working on ID in booking" />
   </component>
 </project>

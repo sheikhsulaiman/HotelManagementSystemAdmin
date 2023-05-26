@@ -1,9 +1,12 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DataBaseConnection;
+import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -16,9 +19,18 @@ public class BookingController implements Initializable {
 
     @FXML
     private ChoiceBox<String> cb_roomType;
+    @FXML
+    private Button btn_newuser;
+    @FXML
+    private TextField tf_user_id;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        tf_user_id.setText(Integer.toString( SignUpController.generatedId));
+
+
+
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
 
@@ -39,5 +51,8 @@ public class BookingController implements Initializable {
         } catch (SQLException e) {
             System.out.println("SQL Exception");
         }
+
+        // new user scene switch
+        btn_newuser.setOnAction(event -> SceneSwitcher.changeSceneToNewWindow("../signup.fxml","New Registration"));
     }
 }

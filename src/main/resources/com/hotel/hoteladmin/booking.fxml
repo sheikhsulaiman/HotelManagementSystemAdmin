@@ -23,9 +23,9 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="125.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <Button fx:id="btn_newuser" layoutX="125.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
          <graphic>
-            <FontIcon iconLiteral="fltfal-book-add-20" iconSize="20" />
+            <FontIcon  iconLiteral="fltfal-book-add-20" iconSize="20" />
          </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />

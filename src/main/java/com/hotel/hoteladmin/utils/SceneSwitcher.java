@@ -26,4 +26,21 @@ public class SceneSwitcher {
         }
 
     }
+
+    public static void changeSceneToNewWindow(String fxmlFile,String title){
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(SceneSwitcher.class.getResource(fxmlFile));
+        try{
+            root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
