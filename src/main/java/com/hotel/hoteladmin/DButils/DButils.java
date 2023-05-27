@@ -19,11 +19,37 @@ public class DButils {
             insertStatement.setString(7, "1234");
 
             insertStatement.executeUpdate();
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //System.out.println("SQL Exception");
+        }
+    }
+
+    public static void newBooking(int roomNo,int userId,String checkInDate,String checkOutDate,String payType,String payStatus,String roomService,String poolAccess,String carParking){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        try {
+            PreparedStatement insertStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?);");
+
+            insertStatement.setInt(1,roomNo);
+            insertStatement.setInt(2,userId);
+            insertStatement.setString(3,checkInDate);
+            insertStatement.setString(4, checkOutDate);
+            insertStatement.setString(5, payType);
+            insertStatement.setString(6, payStatus);
+            insertStatement.setString(7, roomService);
+            insertStatement.setString(8, poolAccess);
+            insertStatement.setString(9, carParking);
+
+            insertStatement.executeUpdate();
+            connectDB.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
             //System.out.println("SQL Exception");
         }
+
     }
 
     public static ArrayList<String> getVacentRooms(String roomType){
@@ -40,6 +66,7 @@ public class DButils {
             while (resultSet.next()){
                 list.add(Integer.toString(resultSet.getInt("number")));
             }
+            connectDB.close();
         } catch (SQLException e) {
             System.out.println("SQL Exception");
         }
@@ -59,6 +86,7 @@ public class DButils {
             while (resultSet.next()){
                 list.add(resultSet.getString("type"));
             }
+            connectDB.close();
         } catch (SQLException e) {
             System.out.println("SQL Exception");
         }
@@ -75,7 +103,7 @@ public class DButils {
             ResultSet resultSet = getLastIdStatement.executeQuery("SELECT id FROM users WHERE ROWID IN ( SELECT max( ROWID ) FROM users)" );
 
                 id=resultSet.getInt("id");
-
+            connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
 //            System.out.println("SQL Exception");
