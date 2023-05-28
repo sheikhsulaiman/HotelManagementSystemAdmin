@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.hoteladmin.controllers.AppController">
    <children>
-      <Button fx:id="btn_newbooking" layoutX="851.0" layoutY="14.0" mnemonicParsing="false" text="New Booking" />
+      <Button fx:id="btn_newbooking" layoutX="809.0" layoutY="20.0" mnemonicParsing="false" text="New Booking" />
       <Line endX="820.0" layoutX="116.0" layoutY="67.0" startX="-100.0" />
       <TabPane layoutX="16.0" layoutY="68.0" prefHeight="524.0" prefWidth="921.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -67,5 +67,13 @@
           </Tab>
         </tabs>
       </TabPane>
+      <Button fx:id="btn_logOut" layoutX="896.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+         <graphic>
+            <FontIcon iconColor="#fc3f3f" iconLiteral="fltfmz-power-28" iconSize="28" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
