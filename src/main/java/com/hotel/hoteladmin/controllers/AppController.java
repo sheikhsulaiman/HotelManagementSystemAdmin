@@ -2,7 +2,9 @@ package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
+import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
+import com.hotel.hoteladmin.utils.tables.Rooms;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +19,44 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
+    @FXML
+    private TableView<Bookings> tv_bookings;
+
+    @FXML
+    private TableColumn<Bookings,Integer> tc_bookingId;
+    @FXML
+    private TableColumn<Bookings,Integer> tc_btRoomNumber;
+    @FXML
+    private TableColumn<Bookings,Integer> tc_btUserId;
+    @FXML
+    private TableColumn<Bookings,String> tc_carParking;
+
+    @FXML
+    private TableColumn<Bookings,String> tc_checkIn;
+
+    @FXML
+    private TableColumn<Bookings,String> tc_checkOut;
+    @FXML
+    private TableColumn<Bookings,String> tc_payStatus;
+
+    @FXML
+    private TableColumn<Bookings,String> tc_payType;
+    @FXML
+    private TableColumn<Bookings,String> tc_poolAccess;
+    @FXML
+    private TableColumn<Bookings,String> tc_roomService;
+
+    @FXML
+    private TableColumn<Rooms, Integer> tc_roomNumber;
+
+    @FXML
+    private TableColumn<Rooms, String> tc_roomStatus;
+
+    @FXML
+    private TableColumn<Rooms, String> tc_roomType;
+
+    @FXML
+    private TableView<Rooms> tv_rooms;
 
     @FXML
     private Button btn_newbooking;
@@ -63,6 +103,7 @@ public class AppController implements Initializable {
         cutomer_reload.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                // Customer Table
                 ObservableList<Customers> searchModelCustomerObservableList = DButils.getCustomerTable();
                 tc_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
                 tc_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -70,8 +111,29 @@ public class AppController implements Initializable {
                 tc_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
                 tc_email.setCellValueFactory(new PropertyValueFactory<>("email"));
                 tc_address.setCellValueFactory(new PropertyValueFactory<>("address"));
-
                 tv_customers.setItems(searchModelCustomerObservableList);
+
+                // Rooms Table
+                ObservableList<Rooms> searchModelRoomObservableList = DButils.getRoomsTable();
+                tc_roomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+                tc_roomType.setCellValueFactory(new PropertyValueFactory<>("roomType"));
+                tc_roomStatus.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
+                tv_rooms.setItems(searchModelRoomObservableList);
+
+                //Booking Table
+                ObservableList<Bookings> searchModelBookingObservableList = DButils.getBookingTable();
+                tc_bookingId.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
+                tc_btRoomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+                tc_btUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+                tc_checkIn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
+                tc_checkOut.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
+                tc_payType.setCellValueFactory(new PropertyValueFactory<>("payMethod"));
+                tc_payStatus.setCellValueFactory(new PropertyValueFactory<>("payStatus"));
+                tc_roomService.setCellValueFactory(new PropertyValueFactory<>("roomService"));
+                tc_carParking.setCellValueFactory(new PropertyValueFactory<>("carParking"));
+                tc_poolAccess.setCellValueFactory(new PropertyValueFactory<>("poolAccess"));
+
+                tv_bookings.setItems(searchModelBookingObservableList);
             }
         });
 

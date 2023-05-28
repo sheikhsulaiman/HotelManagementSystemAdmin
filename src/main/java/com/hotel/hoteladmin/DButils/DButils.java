@@ -1,6 +1,8 @@
 package com.hotel.hoteladmin.DButils;
 
+import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
+import com.hotel.hoteladmin.utils.tables.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -78,6 +80,60 @@ public class DButils {
                 String queryAddress = queryOutput.getString("address");
 
                 searchModelObservableList.add(new Customers(queryFirstname, queryLastname, queryGender, queryPhone, queryEmail, queryAddress));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return searchModelObservableList;
+
+    }
+    public static ObservableList<Bookings> getBookingTable() {
+        DataBaseConnection connectNow = new DataBaseConnection();
+        Connection connectDB = connectNow.getDatabaseLink();
+
+        String userDetailsViewQuery = "SELECT * FROM bookings";
+        ObservableList<Bookings> searchModelObservableList = FXCollections.observableArrayList();
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(userDetailsViewQuery);
+            while (queryOutput.next()) {
+                Integer queryBookingId = queryOutput.getInt("bookingid");
+                Integer queryRoomNo = queryOutput.getInt("roomno");
+                Integer queryUserid = queryOutput.getInt("userid");
+                String queryCheckIn = queryOutput.getString("checkin");
+                String queryCheckOut = queryOutput.getString("checkout");
+                String queryPayMethod = queryOutput.getString("paymentmethod");
+                String queryPayStatus = queryOutput.getString("paymentstatus");
+                String queryRoomService = queryOutput.getString("roomservice");
+                String queryPoolAccess = queryOutput.getString("poolaccess");
+                String queryCarParking = queryOutput.getString("carparking");
+
+
+                searchModelObservableList.add(new Bookings(queryBookingId,queryRoomNo,queryUserid,queryCheckIn,queryCheckOut,queryPayMethod,queryPayStatus,queryRoomService,queryCarParking,queryPoolAccess));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return searchModelObservableList;
+
+    }
+    public static ObservableList<Rooms> getRoomsTable() {
+        DataBaseConnection connectNow = new DataBaseConnection();
+        Connection connectDB = connectNow.getDatabaseLink();
+
+        String userDetailsViewQuery = "SELECT number,type,status FROM rooms";
+        ObservableList<Rooms> searchModelObservableList = FXCollections.observableArrayList();
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(userDetailsViewQuery);
+            while (queryOutput.next()) {
+                Integer queryRoomNumber = queryOutput.getInt("number");
+                String queryRoomType = queryOutput.getString("type");
+                String queryRoomStatus = queryOutput.getString("status");
+
+                searchModelObservableList.add(new Rooms(queryRoomNumber, queryRoomType, queryRoomStatus));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

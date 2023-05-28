@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
@@ -20,15 +21,18 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="495.0" prefWidth="523.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tv_bookings" prefHeight="495.0" prefWidth="921.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Booking Id" />
-                            <TableColumn prefWidth="75.0" text="Room No." />
-                              <TableColumn prefWidth="75.0" text="User Id" />
-                              <TableColumn prefWidth="75.0" text="Check-In" />
-                              <TableColumn prefWidth="75.0" text="Check-Out" />
-                              <TableColumn prefWidth="75.0" text="Pay Type" />
-                              <TableColumn prefWidth="75.0" text="Pay Status" />
+                            <TableColumn fx:id="tc_bookingId" prefWidth="75.0" text="Booking Id" />
+                            <TableColumn fx:id="tc_btRoomNumber" prefWidth="75.0" text="Room No." />
+                              <TableColumn fx:id="tc_btUserId" prefWidth="75.0" text="User Id" />
+                              <TableColumn fx:id="tc_checkIn" prefWidth="97.0" text="Arrive" />
+                              <TableColumn fx:id="tc_checkOut" prefWidth="88.0" text="Leave" />
+                              <TableColumn fx:id="tc_payType" prefWidth="82.0" text="Pay Type" />
+                              <TableColumn fx:id="tc_payStatus" text="Pay Status" />
+                              <TableColumn fx:id="tc_roomService" prefWidth="104.0" text="Room Service" />
+                              <TableColumn fx:id="tc_carParking" prefWidth="108.0" text="Car Parking" />
+                              <TableColumn fx:id="tc_poolAccess" prefWidth="136.0" text="Pool Access" />
                           </columns>
                         </TableView>
                      </children>
@@ -37,7 +41,16 @@
             </Tab>
           <Tab text="Rooms">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tv_rooms" prefHeight="496.0" prefWidth="605.0">
+                          <columns>
+                            <TableColumn fx:id="tc_roomNumber" prefWidth="148.0" text="Room Number" />
+                            <TableColumn fx:id="tc_roomType" prefWidth="223.0" text="Room Type" />
+                              <TableColumn fx:id="tc_roomStatus" prefWidth="233.0" text="Status" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Customers">
@@ -54,14 +67,6 @@
                               <TableColumn fx:id="tc_address" minWidth="0.0" prefWidth="127.0" text="Address" />
                            </columns>
                         </TableView>
-                        <Button fx:id="cutomer_reload" layoutX="855.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
-                           <graphic>
-                              <FontIcon iconLiteral="fltfal-arrow-sync-24" iconSize="24" tabSize="0" />
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -75,5 +80,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <StackPane layoutX="900.0" layoutY="66.0">
+         <children>
+            <Button fx:id="cutomer_reload" mnemonicParsing="false" style="-fx-background-color: transparent;">
+               <graphic>
+                  <FontIcon iconLiteral="fltfal-arrow-sync-24" iconSize="24" tabSize="0" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
