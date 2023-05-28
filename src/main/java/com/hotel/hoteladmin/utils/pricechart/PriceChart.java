@@ -1,4 +1,4 @@
-package com.hotel.hoteladmin.utils;
+package com.hotel.hoteladmin.utils.pricechart;
 
 import java.time.LocalDate;
 import java.time.Period;

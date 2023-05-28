@@ -1,7 +1,7 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
-import com.hotel.hoteladmin.utils.PriceChart;
+import com.hotel.hoteladmin.utils.pricechart.PriceChart;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -100,7 +100,7 @@ public class BookingController implements Initializable {
         btn_predictPrice.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               l_predictedPrice.setText(Integer.toString(PriceChart.calculatePrice(cb_roomType.getValue(),dp_checkIn.getValue(),dp_checkOut.getValue(), ckb_roomService.isSelected()?"YES":"NO", ckb_carParking.isSelected()?"YES":"NO", ckb_poolAccess.isSelected()?"YES":"NO")));
+               l_predictedPrice.setText("$ "+Integer.toString(PriceChart.calculatePrice(cb_roomType.getValue(),dp_checkIn.getValue(),dp_checkOut.getValue(), ckb_roomService.isSelected()?"YES":"NO", ckb_carParking.isSelected()?"YES":"NO", ckb_poolAccess.isSelected()?"YES":"NO")));
             }
         });
 
