@@ -1,5 +1,9 @@
 package com.hotel.hoteladmin.DButils;
 
+import com.hotel.hoteladmin.utils.tables.Customers;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -55,7 +59,34 @@ public class DButils {
 
     }
 
-    public static ArrayList<String> getVacentRooms(String roomType){
+    public static ObservableList<Customers> getCustomerTable() {
+        DataBaseConnection connectNow = new DataBaseConnection();
+        Connection connectDB = connectNow.getDatabaseLink();
+
+        String userDetailsViewQuery = "SELECT firstname,lastname,gender,phone,email,address FROM users";
+        ObservableList<Customers> searchModelObservableList = FXCollections.observableArrayList();
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(userDetailsViewQuery);
+            while (queryOutput.next()) {
+                String queryFirstname = queryOutput.getString("firstname");
+                String queryLastname = queryOutput.getString("lastname");
+                Integer queryPhone = queryOutput.getInt("phone");
+                String queryGender = queryOutput.getString("gender");
+                String queryEmail = queryOutput.getString("email");
+                String queryAddress = queryOutput.getString("address");
+
+                searchModelObservableList.add(new Customers(queryFirstname, queryLastname, queryGender, queryPhone, queryEmail, queryAddress));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return searchModelObservableList;
+
+    }
+
+        public static ArrayList<String> getVacantRooms(String roomType){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
 

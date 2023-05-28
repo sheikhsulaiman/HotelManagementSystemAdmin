@@ -81,7 +81,7 @@ public class BookingController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 cb_roomNo.getItems().clear();
-                cb_roomNo.getItems().addAll(DButils.getVacentRooms(cb_roomType.getValue()));
+                cb_roomNo.getItems().addAll(DButils.getVacantRooms(cb_roomType.getValue()));
             }
         });
 

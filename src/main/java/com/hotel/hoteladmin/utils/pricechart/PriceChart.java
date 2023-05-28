@@ -40,7 +40,6 @@ public class PriceChart {
         if(poolAccess.equals("YES")){
             sum+=poolAccessPrice;
         }
-        System.out.println(sum);
         return sum;
     }
 }
