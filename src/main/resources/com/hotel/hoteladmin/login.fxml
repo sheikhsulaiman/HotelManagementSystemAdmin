@@ -14,12 +14,12 @@
    <children>
       <FontIcon iconLiteral="fltfmz-person-20" iconSize="60" layoutX="417.0" layoutY="111.0" />
       <Line endX="-7.0" endY="166.0" layoutX="300.0" layoutY="190.0" startX="-7.0" startY="-139.0" />
-      <TextField fx:id="tf_userName" layoutX="335.0" layoutY="145.0">
+      <TextField fx:id="tf_userName" layoutX="335.0" layoutY="145.0" promptText="Id">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="pf_password" layoutX="335.0" layoutY="204.0">
+      <PasswordField fx:id="pf_password" layoutX="335.0" layoutY="204.0" promptText="password">
          <font>
             <Font size="18.0" />
          </font>
@@ -33,5 +33,11 @@
          </cursor>
       </Button>
       <Label fx:id="l_message" alignment="CENTER" layoutX="335.0" layoutY="262.0" prefHeight="17.0" prefWidth="224.0" textFill="RED" />
+      <FontIcon iconLiteral="fltral-building-skyscraper-24" iconSize="100" layoutX="98.0" layoutY="181.0" />
+      <Label layoutX="88.0" layoutY="200.0" text="hotel">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="42.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
