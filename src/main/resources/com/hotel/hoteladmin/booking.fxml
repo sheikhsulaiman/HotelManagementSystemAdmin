@@ -89,7 +89,7 @@
       </Label>
       <Button fx:id="btn_predictPrice" layoutX="62.0" layoutY="481.0" mnemonicParsing="false" text="Predict Price" />
       <Button fx:id="btn_confirmBooking" layoutX="202.0" layoutY="481.0" mnemonicParsing="false" text="Confirm Booking" />
-      <Label layoutX="219.0" layoutY="366.0" prefHeight="83.0" prefWidth="103.0" text="\$ 0" textFill="#ff7d7d">
+      <Label fx:id="l_predictedPrice" layoutX="219.0" layoutY="366.0" prefHeight="83.0" prefWidth="103.0" text="\$ 0" textFill="#ff7d7d">
          <font>
             <Font size="31.0" />
          </font>

@@ -15,6 +15,6 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btn_newbooking.setOnAction(event -> SceneSwitcher.changeScene(event,"../booking.fxml","New Booking"));
+        btn_newbooking.setOnAction(event -> SceneSwitcher.changeSceneToNewWindow("../booking.fxml","New Booking"));
     }
 }

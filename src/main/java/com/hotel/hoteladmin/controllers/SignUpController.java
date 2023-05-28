@@ -37,7 +37,7 @@ public class SignUpController implements Initializable {
     private TextField tf_phone;
 
     @FXML
-    private Label l_idShow;
+    private Button btn_back;
 
     private String defaultPassword = "1234";
 
@@ -52,11 +52,13 @@ public class SignUpController implements Initializable {
 
         cb_gender.getItems().addAll(gender);
 
+        btn_back.setOnAction(event -> SceneSwitcher.changeScene(event,"../booking.fxml","New Booking"));
+
         btn_Resigter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 DButils.resigterByAdmin(tf_firstname.getText(),tf_lastname.getText(),Integer.parseInt(tf_phone.getText()),cb_gender.getValue(),tf_email.getText(), ta_address.getText());
-                SceneSwitcher.closeWindow(event);
+                SceneSwitcher.changeScene(event,"../booking.fxml","New Booking");
             }
         });
 

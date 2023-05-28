@@ -31,7 +31,9 @@ public class DButils {
         Connection connectDB = dbConnection.getDatabaseLink();
         try {
             PreparedStatement insertStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?);");
+            PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='booked' WHERE number=?");
 
+            updateStatement.setInt(1,roomNo);
             insertStatement.setInt(1,roomNo);
             insertStatement.setInt(2,userId);
             insertStatement.setString(3,checkInDate);
@@ -42,6 +44,7 @@ public class DButils {
             insertStatement.setString(8, poolAccess);
             insertStatement.setString(9, carParking);
 
+            updateStatement.executeUpdate();
             insertStatement.executeUpdate();
             connectDB.close();
 

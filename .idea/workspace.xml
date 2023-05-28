@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/PriceChart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/signup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/signup.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,32 +47,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Project/HotelAdmin/src/main/java/com/hotel/hoteladmin/DButils/hotel.db",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "database.query.execution",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project/HotelAdmin/src/main/java/com/hotel/hoteladmin/DButils/hotel.db&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Project\HotelAdmin\src\main\java\com\hotel\hoteladmin\DButils" />
@@ -111,7 +116,9 @@
       <workItem from="1685108440066" duration="300000" />
       <workItem from="1685110773820" duration="2286000" />
       <workItem from="1685144904969" duration="5724000" />
-      <workItem from="1685153969104" duration="1520000" />
+      <workItem from="1685153969104" duration="8043000" />
+      <workItem from="1685185498261" duration="1353000" />
+      <workItem from="1685235008945" duration="2129000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -176,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685099812755</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add booking functionalities and booking table in database">
+      <created>1685155677431</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685155677431</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +218,7 @@
     <MESSAGE value="add last registered user id retrive button" />
     <MESSAGE value="refactor method for roomType choose box" />
     <MESSAGE value="create method for roomNo choose box" />
-    <option name="LAST_COMMIT_MESSAGE" value="create method for roomNo choose box" />
+    <MESSAGE value="add booking functionalities and booking table in database" />
+    <option name="LAST_COMMIT_MESSAGE" value="add booking functionalities and booking table in database" />
   </component>
 </project>

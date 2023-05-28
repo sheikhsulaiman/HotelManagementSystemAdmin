@@ -1,6 +1,7 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
+import com.hotel.hoteladmin.utils.PriceChart;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +13,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
+
+    @FXML
+    private Label l_predictedPrice;
 
     @FXML
     private Button btn_confirmBooking;
@@ -71,7 +75,7 @@ public class BookingController implements Initializable {
 
 
         // new user scene switch
-        btn_newuser.setOnAction(event -> SceneSwitcher.changeSceneToNewWindow("../signup.fxml","New Registration"));
+        btn_newuser.setOnAction(event -> SceneSwitcher.changeScene(event,"../signup.fxml","New Registration"));
         cb_roomType.getItems().addAll(DButils.getRoomType());
         cb_roomType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -85,6 +89,18 @@ public class BookingController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 DButils.newBooking(Integer.parseInt(cb_roomNo.getValue()),Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue(), cb_payStatus.getValue(), ckb_roomService.isSelected()?"YES":"NO", ckb_poolAccess.isSelected()?"YES":"NO", ckb_carParking.isSelected()?"YES":"NO");
+                SceneSwitcher.closeWindow(event);
+                Alert alert =new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Confirmation");
+                alert.setContentText("Booking Successfull");
+                alert.show();
+            }
+        });
+
+        btn_predictPrice.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+               l_predictedPrice.setText(Integer.toString(PriceChart.calculatePrice(cb_roomType.getValue(),dp_checkIn.getValue(),dp_checkOut.getValue(), ckb_roomService.isSelected()?"YES":"NO", ckb_carParking.isSelected()?"YES":"NO", ckb_poolAccess.isSelected()?"YES":"NO")));
             }
         });
 

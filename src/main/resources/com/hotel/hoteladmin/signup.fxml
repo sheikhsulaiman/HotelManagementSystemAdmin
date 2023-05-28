@@ -11,6 +11,11 @@
 
 <AnchorPane prefHeight="519.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.hoteladmin.controllers.SignUpController">
    <children>
+      <Button fx:id="btn_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+         <graphic>
+            <FontIcon iconLiteral="fltral-channel-arrow-left-16" iconSize="25" />
+         </graphic>
+      </Button>
       <TextField fx:id="tf_firstname" layoutX="111.0" layoutY="127.0" promptText="first name" />
       <TextField fx:id="tf_lastname" layoutX="111.0" layoutY="166.0" promptText="last name" />
       <Label layoutX="111.0" layoutY="204.0" text="Gender">
@@ -25,8 +30,8 @@
             <Font size="71.0" />
          </font>
       </FontIcon>
-      <TextArea fx:id="ta_address" layoutX="111.0" layoutY="312.0" prefHeight="96.0" prefWidth="149.0" promptText="address" />
       <TextField fx:id="tf_email" layoutX="111.0" layoutY="276.0" promptText="email" />
+      <TextArea fx:id="ta_address" layoutX="111.0" layoutY="312.0" prefHeight="96.0" prefWidth="149.0" promptText="address" />
       <Button fx:id="btn_Resigter" layoutX="111.0" layoutY="421.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="149.0" text="Register">
          <font>
             <Font size="14.0" />
@@ -35,6 +40,5 @@
             <FontIcon iconLiteral="fltral-checkmark-circle-20" iconSize="20" />
          </graphic>
       </Button>
-      <Label fx:id="l_idShow" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="457.0" prefHeight="17.0" prefWidth="116.0" textFill="#ee5151" />
    </children>
 </AnchorPane>
