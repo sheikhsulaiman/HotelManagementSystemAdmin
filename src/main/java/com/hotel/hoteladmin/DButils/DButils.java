@@ -127,6 +127,29 @@ public class DButils {
         return list;
     }
 
+    public static boolean resolveAdminLogin(String userId,String password){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        try {
+            PreparedStatement logInStatement = connectDB.prepareStatement("SELECT * FROM admin WHERE id=? AND password=?");
+            int intUserId;
+                    try{
+                        intUserId = Integer.parseInt(userId);
+                    }catch (NumberFormatException e){intUserId = 0;}
+            logInStatement.setInt(1,intUserId);
+            logInStatement.setString(2,password);
+            ResultSet resultSet = logInStatement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static int getLastUserId(){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();

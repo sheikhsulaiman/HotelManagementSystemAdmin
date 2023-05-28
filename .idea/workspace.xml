@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DataBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/tables/Customers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/LogInController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DataBaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/pricechart/PriceChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/pricechart/PriceChart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -119,7 +115,8 @@
       <workItem from="1685153969104" duration="8043000" />
       <workItem from="1685185498261" duration="1353000" />
       <workItem from="1685235008945" duration="5458000" />
-      <workItem from="1685250144827" duration="2787000" />
+      <workItem from="1685250144827" duration="4996000" />
+      <workItem from="1685268268056" duration="3605000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -205,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685241356070</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add customer refresh button">
+      <created>1685253024278</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1685253024278</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +240,7 @@
     <MESSAGE value="add booking functionalities and booking table in database" />
     <MESSAGE value="add PriceChart and PricePrediction functionalities" />
     <MESSAGE value="send PriceChart to a package and style improvement" />
-    <option name="LAST_COMMIT_MESSAGE" value="send PriceChart to a package and style improvement" />
+    <MESSAGE value="add customer refresh button" />
+    <option name="LAST_COMMIT_MESSAGE" value="add customer refresh button" />
   </component>
 </project>
