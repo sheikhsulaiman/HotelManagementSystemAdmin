@@ -1,6 +1,7 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
+import com.hotel.hoteladmin.utils.ExcelExport;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import com.hotel.hoteladmin.utils.Search;
 import com.hotel.hoteladmin.utils.tables.Bookings;
@@ -21,6 +22,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
+    @FXML
+    private Button btn_cExcelExport;
+    @FXML
+    private Button btn_bExcelExport;
+    @FXML
+    private Button btn_rExcelExport;
     @FXML
     private TableView<Bookings> tv_bookings;
     @FXML
@@ -99,6 +106,28 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        btn_bExcelExport.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ExcelExport<Bookings> bookingsExcelExport = new ExcelExport<>();
+                bookingsExcelExport.export(tv_bookings);
+            }
+        });
+        btn_cExcelExport.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ExcelExport<Customers> bookingsExcelExport = new ExcelExport<>();
+                bookingsExcelExport.export(tv_customers);
+            }
+        });
+        btn_rExcelExport.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ExcelExport<Rooms> bookingsExcelExport = new ExcelExport<>();
+                bookingsExcelExport.export(tv_rooms);
+            }
+        });
 
         btn_logOut.setOnAction(new EventHandler<ActionEvent>() {
             @Override

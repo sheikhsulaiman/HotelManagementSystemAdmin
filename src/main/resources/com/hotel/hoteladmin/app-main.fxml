@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
@@ -37,6 +38,18 @@
                               <TableColumn fx:id="tc_poolAccess" prefWidth="136.0" text="Pool Access" />
                           </columns>
                         </TableView>
+                        <StackPane prefHeight="52.0" prefWidth="52.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
+                           <children>
+                              <Button fx:id="btn_bExcelExport" mnemonicParsing="false">
+                                 <graphic>
+                                    <FontIcon iconColor="#005401" iconLiteral="file-microsoft-excel" iconSize="30" />
+                                 </graphic>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                           </children>
+                        </StackPane>
                      </children>
                   </AnchorPane>
                </content>
@@ -52,6 +65,18 @@
                               <TableColumn fx:id="tc_roomStatus" prefWidth="233.0" text="Status" />
                           </columns>
                         </TableView>
+                        <StackPane prefHeight="52.0" prefWidth="52.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
+                           <children>
+                              <Button fx:id="btn_rExcelExport" mnemonicParsing="false">
+                                 <graphic>
+                                    <FontIcon iconColor="#005401" iconLiteral="file-microsoft-excel" iconSize="30" />
+                                 </graphic>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                           </children>
+                        </StackPane>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -71,6 +96,18 @@
                               <TableColumn fx:id="tc_address" minWidth="0.0" prefWidth="198.0" text="Address" />
                            </columns>
                         </TableView>
+                        <StackPane prefHeight="52.0" prefWidth="52.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
+                           <children>
+                              <Button fx:id="btn_cExcelExport" mnemonicParsing="false">
+                                 <graphic>
+                                    <FontIcon iconColor="#005401" iconLiteral="file-microsoft-excel" iconSize="30" />
+                                 </graphic>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                           </children>
+                        </StackPane>
                      </children></AnchorPane>
             </content>
           </Tab>
