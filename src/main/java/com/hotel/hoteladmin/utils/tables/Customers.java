@@ -1,10 +1,12 @@
 package com.hotel.hoteladmin.utils.tables;
 
 public class Customers {
-    private String firstName,lastName,gender,email,address;
-    private Integer phone;
+    private String firstName,lastName,gender,email,address,password;
+    private Integer phone,userId;
 
-    public Customers(String firstName, String lastName, String gender, Integer phone, String email, String address) {
+    public Customers(Integer userId,String password, String firstName, String lastName, String gender, Integer phone, String email, String address) {
+        this.password = password;
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -13,9 +15,19 @@ public class Customers {
         this.phone = phone;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getFirstName() {
         return firstName;
     }
+
+    public Integer getUserId(){return userId;}
 
     public String getLastName() {
         return lastName;
@@ -40,6 +52,8 @@ public class Customers {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
+    public void setUserId(Integer userId){this.userId=userId;}
 
     public void setLastName(String lastName) {
         this.lastName = lastName;

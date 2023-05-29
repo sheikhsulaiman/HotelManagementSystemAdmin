@@ -2,6 +2,7 @@ package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
+import com.hotel.hoteladmin.utils.Search;
 import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
 import com.hotel.hoteladmin.utils.tables.Rooms;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -21,6 +23,12 @@ import java.util.ResourceBundle;
 public class AppController implements Initializable {
     @FXML
     private TableView<Bookings> tv_bookings;
+    @FXML
+    private TextField tf_search;
+    @FXML
+    private TableColumn<Customers,String> tc_cPassword;
+    @FXML
+    private TableColumn<Customers,Integer> tc_cUserId;
 
     @FXML
     private TableColumn<Bookings,Integer> tc_bookingId;
@@ -105,6 +113,9 @@ public class AppController implements Initializable {
             public void handle(ActionEvent event) {
                 // Customer Table
                 ObservableList<Customers> searchModelCustomerObservableList = DButils.getCustomerTable();
+
+                tc_cUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+                tc_cPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
                 tc_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
                 tc_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
                 tc_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
@@ -134,6 +145,11 @@ public class AppController implements Initializable {
                 tc_poolAccess.setCellValueFactory(new PropertyValueFactory<>("poolAccess"));
 
                 tv_bookings.setItems(searchModelBookingObservableList);
+
+                //Search
+                Search.bookingSearch(tf_search,searchModelBookingObservableList,tv_bookings);
+                Search.roomSearch(tf_search,searchModelRoomObservableList,tv_rooms);
+                Search.customerSearch(tf_search,searchModelCustomerObservableList,tv_customers);
             }
         });
 

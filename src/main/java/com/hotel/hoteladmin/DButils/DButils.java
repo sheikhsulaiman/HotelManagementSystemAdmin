@@ -65,13 +65,15 @@ public class DButils {
         DataBaseConnection connectNow = new DataBaseConnection();
         Connection connectDB = connectNow.getDatabaseLink();
 
-        String userDetailsViewQuery = "SELECT firstname,lastname,gender,phone,email,address FROM users";
+        String userDetailsViewQuery = "SELECT id,firstname,lastname,gender,phone,email,address,password FROM users";
         ObservableList<Customers> searchModelObservableList = FXCollections.observableArrayList();
 
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(userDetailsViewQuery);
             while (queryOutput.next()) {
+                Integer queryUserId = queryOutput.getInt("id");
+                String queryPassword = queryOutput.getString("password");
                 String queryFirstname = queryOutput.getString("firstname");
                 String queryLastname = queryOutput.getString("lastname");
                 Integer queryPhone = queryOutput.getInt("phone");
@@ -79,7 +81,7 @@ public class DButils {
                 String queryEmail = queryOutput.getString("email");
                 String queryAddress = queryOutput.getString("address");
 
-                searchModelObservableList.add(new Customers(queryFirstname, queryLastname, queryGender, queryPhone, queryEmail, queryAddress));
+                searchModelObservableList.add(new Customers(queryUserId,queryPassword,queryFirstname, queryLastname, queryGender, queryPhone, queryEmail, queryAddress));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
