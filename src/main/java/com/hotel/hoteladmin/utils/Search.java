@@ -108,8 +108,6 @@ public class Search {
                     return true; // means we found a match in lastname
                 }else if(searchModel.getRoomType().toLowerCase().indexOf(searchKeyword)>-1){
                     return true; // means we found a match in lastname
-                }else if(searchModel.getRoomStatus().toLowerCase().indexOf(searchKeyword)>-1){
-                    return true; // means we found a match in lastname
                 }else {
                     return false; // nothing to display
                 }
