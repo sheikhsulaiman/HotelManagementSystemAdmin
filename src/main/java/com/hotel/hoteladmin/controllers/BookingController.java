@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
@@ -65,6 +66,23 @@ public class BookingController implements Initializable {
 
         cb_payType.getItems().addAll("Cash","Online");
         cb_payStatus.getItems().addAll("Paid","Unpaid");
+
+        dp_checkIn.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
+        });
+        dp_checkOut.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
+        });
 
         btn_lastUserId.setOnAction(new EventHandler<ActionEvent>() {
             @Override
