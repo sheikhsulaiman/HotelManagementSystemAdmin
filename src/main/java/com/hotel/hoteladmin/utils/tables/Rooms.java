@@ -3,12 +3,10 @@ package com.hotel.hoteladmin.utils.tables;
 public class Rooms {
     private Integer roomNumber;
     private String roomType;
-    private String roomStatus;
 
-    public Rooms(Integer roomNumber, String roomType, String roomStatus) {
+    public Rooms(Integer roomNumber, String roomType) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
-        this.roomStatus = roomStatus;
     }
 
     public Integer getRoomNumber() {
@@ -25,13 +23,5 @@ public class Rooms {
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
-    }
-
-    public String getRoomStatus() {
-        return roomStatus;
-    }
-
-    public void setRoomStatus(String roomStatus) {
-        this.roomStatus = roomStatus;
     }
 }
