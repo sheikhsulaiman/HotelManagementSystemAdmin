@@ -78,7 +78,7 @@ public class BookingController implements Initializable {
         dp_checkOut.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
+                LocalDate today = dp_checkIn.getValue();
 
                 setDisable(empty || date.compareTo(today) < 0 );
             }
