@@ -12,11 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,8 +62,6 @@ public class AppController implements Initializable {
     @FXML
     private TableColumn<Rooms, Integer> tc_roomNumber;
 
-    @FXML
-    private TableColumn<Rooms, String> tc_roomStatus;
 
     @FXML
     private TableColumn<Rooms, String> tc_roomType;
@@ -103,9 +99,44 @@ public class AppController implements Initializable {
     @FXML
     private Button btn_logOut;
 
+    @FXML
+    private TextField tf_rRoomNumber;
+
+    @FXML
+    private ChoiceBox<String> cb_rRoomType;
+    @FXML
+    private ChoiceBox<String> cb_rRoomStatus;
+    @FXML
+    private Button btn_roomUpdate;
+
+    private Rooms room;
+    @FXML
+    void selectRow(MouseEvent event) {
+
+        room = tv_rooms.getSelectionModel().getSelectedItem();
+        tf_rRoomNumber.setText(Integer.toString(room.getRoomNumber()));
+        cb_rRoomType.setValue(room.getRoomType());
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btn_roomUpdate.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                DButils.makeRoomVacant(room.getRoomNumber());
+            }
+        });
+
+        cb_rRoomStatus.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                cb_rRoomStatus.getItems().clear();
+                cb_rRoomStatus.getItems().add("vacant");
+            }
+        });
+
 
         btn_bExcelExport.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -157,7 +188,6 @@ public class AppController implements Initializable {
                 ObservableList<Rooms> searchModelRoomObservableList = DButils.getRoomsTable();
                 tc_roomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
                 tc_roomType.setCellValueFactory(new PropertyValueFactory<>("roomType"));
-                tc_roomStatus.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
                 tv_rooms.setItems(searchModelRoomObservableList);
 
                 //Booking Table

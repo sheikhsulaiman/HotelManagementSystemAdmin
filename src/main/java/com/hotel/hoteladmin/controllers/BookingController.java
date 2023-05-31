@@ -1,19 +1,35 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
+import com.hotel.hoteladmin.encryption.Encrypt;
 import com.hotel.hoteladmin.utils.pricechart.PriceChart;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+
 public class BookingController implements Initializable {
+//    Encrypt encrypt;
+//    void test(){
+//        super.test();
+//        encrypt.setAlgorithm("md5");
+//        encrypt.setPassword("1234");
+//        encrypt.encrypt();
+//        System.out.println(encrypt.newPassword);
+//    }
 
     @FXML
     private Label l_predictedPrice;
@@ -69,10 +85,9 @@ public class BookingController implements Initializable {
 
         dp_checkIn.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
                 LocalDate today = LocalDate.now();
-
-                setDisable(empty || date.compareTo(today) < 0 );
+                super.updateItem(date, empty);
+               setDisable(empty || date.compareTo(today) < 0 );
             }
         });
         dp_checkOut.setDayCellFactory(picker -> new DateCell() {
@@ -94,12 +109,24 @@ public class BookingController implements Initializable {
 
         // new user scene switch
         btn_newuser.setOnAction(event -> SceneSwitcher.changeScene(event,"../signup.fxml","New Registration"));
+        cb_roomType.getItems().add("any");
         cb_roomType.getItems().addAll(DButils.getRoomType());
         cb_roomType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 cb_roomNo.getItems().clear();
-                cb_roomNo.getItems().addAll(DButils.getVacantRooms(cb_roomType.getValue()));
+                ArrayList<String> availableRooms = new ArrayList<>(9);
+                availableRooms = (DButils.getRooms(cb_roomType.getValue()));
+                availableRooms.removeAll(DButils.getBookedRooms(dp_checkIn,dp_checkOut));
+
+                cb_roomNo.getItems().addAll(availableRooms);
+            }
+        });
+
+        cb_roomNo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //DButils.updateCalendar(Integer.parseInt(cb_roomNo.getValue()));
             }
         });
 

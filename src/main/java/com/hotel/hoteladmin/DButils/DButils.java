@@ -1,30 +1,38 @@
 package com.hotel.hoteladmin.DButils;
 
+import com.hotel.hoteladmin.encryption.Encrypt;
+import com.hotel.hoteladmin.utils.daterangechecker.DateRangeComparator;
 import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
 import com.hotel.hoteladmin.utils.tables.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.DatePicker;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class DButils {
     public static void resigterByAdmin(String firstname,String lastname,int phone,String gender,String email,String address){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
+        Encrypt encrypt = new Encrypt();
+        encrypt.setAlgorithm("md5");
+        String pass = encrypt.encrypt("1234");
         try {
-            PreparedStatement insertStatement = connectDB.prepareStatement("INSERT INTO users (firstname, lastname, phone, gender, email, address, password) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement insertBookingStatement = connectDB.prepareStatement("INSERT INTO users (firstname, lastname, phone, gender, email, address, password) VALUES (?,?,?,?,?,?,?)");
 
-            insertStatement.setString(1,firstname);
-            insertStatement.setString(2, lastname);
-            insertStatement.setInt(3,phone);
-            insertStatement.setString(4, gender);
-            insertStatement.setString(5, email);
-            insertStatement.setString(6, address);
-            insertStatement.setString(7, "1234");
+            insertBookingStatement.setString(1,firstname);
+            insertBookingStatement.setString(2, lastname);
+            insertBookingStatement.setInt(3,phone);
+            insertBookingStatement.setString(4, gender);
+            insertBookingStatement.setString(5, email);
+            insertBookingStatement.setString(6, address);
+            insertBookingStatement.setString(7, pass);
 
-            insertStatement.executeUpdate();
+            insertBookingStatement.executeUpdate();
             connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,22 +44,46 @@ public class DButils {
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
         try {
-            PreparedStatement insertStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?);");
-            PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='booked' WHERE number=?");
+            PreparedStatement insertBookingStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement insertCalenderStatement = connectDB.prepareStatement("insert into calender(roomid,userid,start,end) values (?,?,?,?)");
+            //PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='booked' WHERE number=?");
+
+            //updateStatement.setInt(1,roomNo);
+            insertBookingStatement.setInt(1,roomNo);
+            insertCalenderStatement.setInt(1,roomNo);
+            insertBookingStatement.setInt(2,userId);
+            insertCalenderStatement.setInt(2,userId);
+            insertBookingStatement.setString(3,checkInDate);
+            insertCalenderStatement.setString(3,checkInDate);
+            insertBookingStatement.setString(4, checkOutDate);
+            insertCalenderStatement.setString(4, checkOutDate);
+            insertBookingStatement.setString(5, payType);
+            insertBookingStatement.setString(6, payStatus);
+            insertBookingStatement.setString(7, roomService);
+            insertBookingStatement.setString(8, poolAccess);
+            insertBookingStatement.setString(9, carParking);
+
+            //updateStatement.executeUpdate();
+            insertBookingStatement.executeUpdate();
+            insertCalenderStatement.executeUpdate();
+            connectDB.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //System.out.println("SQL Exception");
+        }
+
+    }
+    public static void makeRoomVacant(int roomNo){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        try {
+            PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='vacant' WHERE number=?");
 
             updateStatement.setInt(1,roomNo);
-            insertStatement.setInt(1,roomNo);
-            insertStatement.setInt(2,userId);
-            insertStatement.setString(3,checkInDate);
-            insertStatement.setString(4, checkOutDate);
-            insertStatement.setString(5, payType);
-            insertStatement.setString(6, payStatus);
-            insertStatement.setString(7, roomService);
-            insertStatement.setString(8, poolAccess);
-            insertStatement.setString(9, carParking);
+
 
             updateStatement.executeUpdate();
-            insertStatement.executeUpdate();
             connectDB.close();
 
         } catch (SQLException e) {
@@ -85,6 +117,12 @@ public class DButils {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            try {
+                connectDB.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return searchModelObservableList;
 
@@ -116,6 +154,12 @@ public class DButils {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            try {
+                connectDB.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return searchModelObservableList;
 
@@ -124,7 +168,7 @@ public class DButils {
         DataBaseConnection connectNow = new DataBaseConnection();
         Connection connectDB = connectNow.getDatabaseLink();
 
-        String userDetailsViewQuery = "SELECT number,type,status FROM rooms";
+        String userDetailsViewQuery = "SELECT number,type FROM rooms";
         ObservableList<Rooms> searchModelObservableList = FXCollections.observableArrayList();
 
         try {
@@ -133,18 +177,22 @@ public class DButils {
             while (queryOutput.next()) {
                 Integer queryRoomNumber = queryOutput.getInt("number");
                 String queryRoomType = queryOutput.getString("type");
-                String queryRoomStatus = queryOutput.getString("status");
-
-                searchModelObservableList.add(new Rooms(queryRoomNumber, queryRoomType, queryRoomStatus));
+                searchModelObservableList.add(new Rooms(queryRoomNumber, queryRoomType));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            try {
+                connectDB.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return searchModelObservableList;
 
     }
 
-        public static ArrayList<String> getVacantRooms(String roomType){
+        public static ArrayList<String> getRooms(String roomType){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
 
@@ -152,9 +200,12 @@ public class DButils {
 
 //        String connectQuery = "SELECT DISTINCT type FROM rooms";
         try {
-            PreparedStatement getRoomsStm = connectDB.prepareStatement("select number from rooms where type=? and status='vacant'");
+            PreparedStatement getAllRooms = connectDB.prepareStatement("select number from rooms");
+            PreparedStatement getRoomsStm = connectDB.prepareStatement("select number from rooms where type=?");
             getRoomsStm.setString(1,roomType);
-            ResultSet resultSet = getRoomsStm.executeQuery();
+            ResultSet resultSet;
+            if(roomType.equals("any")){resultSet= getAllRooms.executeQuery();}
+            else {resultSet = getRoomsStm.executeQuery(); }
             while (resultSet.next()){
                 list.add(Integer.toString(resultSet.getInt("number")));
             }
@@ -191,13 +242,17 @@ public class DButils {
 
         try {
             PreparedStatement logInStatement = connectDB.prepareStatement("SELECT * FROM admin WHERE id=? AND password=?");
+            Encrypt encrypt = new Encrypt();
+            encrypt.setAlgorithm("md5");
+            String encrypted_password  = encrypt.encrypt(password);
             int intUserId;
                     try{
                         intUserId = Integer.parseInt(userId);
                     }catch (NumberFormatException e){intUserId = 0;}
             logInStatement.setInt(1,intUserId);
-            logInStatement.setString(2,password);
+            logInStatement.setString(2,encrypted_password);
             ResultSet resultSet = logInStatement.executeQuery();
+            connectDB.close();
             if(resultSet.next()){
                 return true;
             }else {
@@ -224,5 +279,37 @@ public class DButils {
 //            System.out.println("SQL Exception");
         }
         return id;
+    }
+
+    public static ArrayList<String> getBookedRooms(DatePicker dp_checkin,DatePicker dp_checkout){
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        Connection connectDB = dataBaseConnection.getDatabaseLink();
+        ArrayList<String> list = new ArrayList<>(9);
+
+        try {
+            PreparedStatement getDates = connectDB.prepareStatement("SELECT * FROM calender");
+            ResultSet resultSet = getDates.executeQuery();
+
+            String db_start,db_end;
+            int roomid;
+            while (resultSet.next()){
+                db_start=(resultSet.getString("start"));
+                db_end=(resultSet.getString("end"));
+                roomid=resultSet.getInt("roomid");
+                if(DateRangeComparator.compare(dp_checkin,dp_checkout,db_start,db_end)){
+                    list.add(Integer.toString(roomid));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                connectDB.close();
+            } catch (SQLException e) {
+               e.printStackTrace();
+            }
+        }
+        return list;
     }
 }
