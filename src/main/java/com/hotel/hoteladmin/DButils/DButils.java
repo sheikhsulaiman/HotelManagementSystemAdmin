@@ -235,6 +235,25 @@ public class DButils {
         }
         return list;
     }
+    public static String getRoomType(String roomNo){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        String roomType="";
+
+        try{
+            PreparedStatement getRoomTypeStm = connectDB.prepareStatement( "SELECT type FROM rooms WHERE number=?");
+            getRoomTypeStm.setInt(1,Integer.parseInt(roomNo));
+            ResultSet resultSet = getRoomTypeStm.executeQuery();
+            while (resultSet.next()){
+                roomType = (resultSet.getString("type"));
+            }
+            connectDB.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception");
+        }
+        return roomType;
+    }
 
     public static boolean resolveAdminLogin(String userId,String password){
         DataBaseConnection dbConnection = new DataBaseConnection();
