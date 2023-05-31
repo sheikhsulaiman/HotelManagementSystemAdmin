@@ -133,7 +133,13 @@ public class BookingController implements Initializable {
         btn_confirmBooking.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DButils.newBooking(Integer.parseInt(cb_roomNo.getValue()),Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue(), cb_payStatus.getValue(), ckb_roomService.isSelected()?"YES":"NO", ckb_poolAccess.isSelected()?"YES":"NO", ckb_carParking.isSelected()?"YES":"NO");
+                try {
+                    DButils.newBooking(Integer.parseInt(cb_roomNo.getValue()), Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue(), cb_payStatus.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO");
+                }catch (NumberFormatException e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Please fill up all the fields");
+                    alert.show();
+                }
                 SceneSwitcher.closeWindow(event);
                 Alert alert =new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Confirmation");
