@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/ModifyBookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/modifyBooking.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/ModifyBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/ModifyBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/modifyBooking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/modifyBooking.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +174,8 @@
       <workItem from="1685497731717" duration="10490000" />
       <workItem from="1685514076443" duration="4039000" />
       <workItem from="1685533785916" duration="2338000" />
-      <workItem from="1685587949097" duration="11563000" />
+      <workItem from="1685587949097" duration="11790000" />
+      <workItem from="1685616120641" duration="4754000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -366,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685536044722</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="add updateBooking functionalities">
+      <created>1685601724767</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1685601724767</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,7 +391,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start working with new booking" />
     <MESSAGE value="connect sqlite and roomType" />
     <MESSAGE value="start working on ID in booking" />
     <MESSAGE value="finish new user registration" />
@@ -409,6 +415,7 @@
     <MESSAGE value="fix bug of booking overlapping" />
     <MESSAGE value="add DateRangeComparator" />
     <MESSAGE value="update calculatePrice method" />
-    <option name="LAST_COMMIT_MESSAGE" value="update calculatePrice method" />
+    <MESSAGE value="add updateBooking functionalities" />
+    <option name="LAST_COMMIT_MESSAGE" value="add updateBooking functionalities" />
   </component>
 </project>

@@ -34,6 +34,8 @@ public class Search {
                     return true; // means we found a match in lastname
                 }else if(searchModel.getPayMethod().toLowerCase().indexOf(searchKeyword)>-1){
                     return true; // means we found a match in lastname
+                }else if(searchModel.getPayStatus().toLowerCase().indexOf(searchKeyword)>-1){
+                    return true; // means we found a match in lastname
                 }else {
                     return false; // nothing to display
                 }

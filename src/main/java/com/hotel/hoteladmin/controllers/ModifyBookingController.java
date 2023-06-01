@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import org.sqlite.core.DB;
 
@@ -68,8 +69,8 @@ public class ModifyBookingController implements Initializable {
         ArrayList<String> list = new ArrayList<>(9);
 
         list.addAll(DButils.getBookingDetails(Value.getIntegerValue()));
-       tf_user_id.setText(list.get(1));
-       dp_checkIn.setValue(LocalDate.parse(list.get(2)));
+        tf_user_id.setText(list.get(1));
+        dp_checkIn.setValue(LocalDate.parse(list.get(2)));
         dp_checkOut.setValue(LocalDate.parse(list.get(3)));
         cb_roomNo.setValue(list.get(0));
         cb_roomType.setValue(DButils.getRoomType(list.get(0)));
@@ -135,14 +136,6 @@ public class ModifyBookingController implements Initializable {
         });
 
 
-
-        cb_roomNo.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //DButils.updateCalendar(Integer.parseInt(cb_roomNo.getValue()));
-            }
-        });
-
         btn_updateBooking.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -165,6 +158,31 @@ public class ModifyBookingController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 l_predictedPrice.setText("$ "+Integer.toString(PriceChart.calculatePrice(cb_roomNo.getValue(),dp_checkIn.getValue(),dp_checkOut.getValue(), ckb_roomService.isSelected()?"YES":"NO", ckb_carParking.isSelected()?"YES":"NO", ckb_poolAccess.isSelected()?"YES":"NO")));
+            }
+        });
+
+        btn_cancelBooking.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmationDialog.setTitle("Confirmation Dialog");
+                confirmationDialog.setHeaderText("Are you sure you want to proceed?");
+                confirmationDialog.setContentText("This action cannot be undone.");
+
+                ButtonType buttonYes = new ButtonType("Yes");
+                ButtonType buttonNo = new ButtonType("No");
+
+                confirmationDialog.getButtonTypes().setAll(buttonYes, buttonNo);
+
+                confirmationDialog.showAndWait().ifPresent(response -> {
+                    if (response == buttonYes) {
+                        DButils.deleteBooking(Integer.parseInt(list.get(9)));
+                        SceneSwitcher.closeWindow(event);
+                    } else if (response == buttonNo) {
+                        SceneSwitcher.closeWindow(event);
+                    }
+                });
+
             }
         });
     }

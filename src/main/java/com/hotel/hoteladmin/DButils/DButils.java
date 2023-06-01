@@ -78,6 +78,21 @@ public class DButils {
         }
 
     }
+
+    public static void deleteBooking(int bookingId){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        try{
+            PreparedStatement deleteFromBookingTableStatement = connectDB.prepareStatement("DELETE FROM bookings WHERE bookingid = ?");
+            PreparedStatement deleteFromCalenderTableStatement = connectDB.prepareStatement("DELETE FROM calender WHERE bookingid = ?");
+            deleteFromBookingTableStatement.setInt(1,bookingId);
+            deleteFromCalenderTableStatement.setInt(1,bookingId);
+            deleteFromCalenderTableStatement.executeUpdate();
+            deleteFromBookingTableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void updateBooking(int bookingId,int roomNo,int userId,String checkInDate,String checkOutDate,String payType,String payStatus,String roomService,String poolAccess,String carParking){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
