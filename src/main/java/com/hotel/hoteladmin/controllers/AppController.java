@@ -4,6 +4,7 @@ import com.hotel.hoteladmin.DButils.DButils;
 import com.hotel.hoteladmin.utils.ExcelExport;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import com.hotel.hoteladmin.utils.Search;
+import com.hotel.hoteladmin.utils.Value;
 import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
 import com.hotel.hoteladmin.utils.tables.Rooms;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -110,6 +112,7 @@ public class AppController implements Initializable {
     private Button btn_roomUpdate;
 
     private Rooms room;
+    private Bookings bookings;
     @FXML
     void selectRow(MouseEvent event) {
 
@@ -122,6 +125,17 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        tv_bookings.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+            @Override
+            public void handle(ContextMenuEvent contextMenuEvent) {
+                bookings=tv_bookings.getSelectionModel().getSelectedItem();
+                Integer id =bookings.getBookingId();
+                Value.setIntegerValue(id);
+                String title = "Edit Booking "+id.toString();
+                SceneSwitcher.changeSceneToNewWindow("../modifyBooking.fxml",title);
+            }
+        });
         btn_roomUpdate.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

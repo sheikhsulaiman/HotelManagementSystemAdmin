@@ -8,6 +8,7 @@ import com.hotel.hoteladmin.utils.tables.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
+import org.sqlite.core.DB;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -22,17 +23,17 @@ public class DButils {
         encrypt.setAlgorithm("md5");
         String pass = encrypt.encrypt("1234");
         try {
-            PreparedStatement insertBookingStatement = connectDB.prepareStatement("INSERT INTO users (firstname, lastname, phone, gender, email, address, password) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement updateBookingStatement = connectDB.prepareStatement("INSERT INTO users (firstname, lastname, phone, gender, email, address, password) VALUES (?,?,?,?,?,?,?)");
 
-            insertBookingStatement.setString(1,firstname);
-            insertBookingStatement.setString(2, lastname);
-            insertBookingStatement.setInt(3,phone);
-            insertBookingStatement.setString(4, gender);
-            insertBookingStatement.setString(5, email);
-            insertBookingStatement.setString(6, address);
-            insertBookingStatement.setString(7, pass);
+            updateBookingStatement.setString(1,firstname);
+            updateBookingStatement.setString(2, lastname);
+            updateBookingStatement.setInt(3,phone);
+            updateBookingStatement.setString(4, gender);
+            updateBookingStatement.setString(5, email);
+            updateBookingStatement.setString(6, address);
+            updateBookingStatement.setString(7, pass);
 
-            insertBookingStatement.executeUpdate();
+            updateBookingStatement.executeUpdate();
             connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,28 +45,67 @@ public class DButils {
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
         try {
-            PreparedStatement insertBookingStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?)");
-            PreparedStatement insertCalenderStatement = connectDB.prepareStatement("insert into calender(roomid,userid,start,end) values (?,?,?,?)");
+            PreparedStatement updateBookingStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement updateCalenderStatement = connectDB.prepareStatement("insert into calender(roomid,userid,start,end,bookingid) values (?,?,?,?,?)");
             //PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='booked' WHERE number=?");
 
             //updateStatement.setInt(1,roomNo);
-            insertBookingStatement.setInt(1,roomNo);
-            insertCalenderStatement.setInt(1,roomNo);
-            insertBookingStatement.setInt(2,userId);
-            insertCalenderStatement.setInt(2,userId);
-            insertBookingStatement.setString(3,checkInDate);
-            insertCalenderStatement.setString(3,checkInDate);
-            insertBookingStatement.setString(4, checkOutDate);
-            insertCalenderStatement.setString(4, checkOutDate);
-            insertBookingStatement.setString(5, payType);
-            insertBookingStatement.setString(6, payStatus);
-            insertBookingStatement.setString(7, roomService);
-            insertBookingStatement.setString(8, poolAccess);
-            insertBookingStatement.setString(9, carParking);
+            updateBookingStatement.setInt(1,roomNo);
+            updateCalenderStatement.setInt(1,roomNo);
+            updateBookingStatement.setInt(2,userId);
+            updateCalenderStatement.setInt(2,userId);
+
+            updateBookingStatement.setString(3,checkInDate);
+            updateCalenderStatement.setString(3,checkInDate);
+            updateBookingStatement.setString(4, checkOutDate);
+            updateCalenderStatement.setString(4, checkOutDate);
+            updateBookingStatement.setString(5, payType);
+            updateBookingStatement.setString(6, payStatus);
+            updateBookingStatement.setString(7, roomService);
+            updateBookingStatement.setString(8, poolAccess);
+            updateBookingStatement.setString(9, carParking);
 
             //updateStatement.executeUpdate();
-            insertBookingStatement.executeUpdate();
-            insertCalenderStatement.executeUpdate();
+            updateBookingStatement.executeUpdate();
+            int bookingId = (DButils.getLastBookingId());
+            updateCalenderStatement.setInt(5,bookingId);
+            updateCalenderStatement.executeUpdate();
+            connectDB.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //System.out.println("SQL Exception");
+        }
+
+    }
+    public static void updateBooking(int bookingId,int roomNo,int userId,String checkInDate,String checkOutDate,String payType,String payStatus,String roomService,String poolAccess,String carParking){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        try {
+            PreparedStatement updateBookingStatement = connectDB.prepareStatement("UPDATE bookings SET roomno = ?, userid = ?, checkin = ?, checkout = ?,paymentmethod = ?, paymentstatus = ?, roomservice = ?, poolaccess = ?, carparking = ? WHERE (bookingid=?)");
+            PreparedStatement updateCalenderStatement = connectDB.prepareStatement("update calender set roomid=?,userid=?,start=?,end=? where (bookingid=?)");
+            //PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='booked' WHERE number=?");
+
+            //updateStatement.setInt(1,roomNo);
+            updateBookingStatement.setInt(1,roomNo);
+            updateCalenderStatement.setInt(1,roomNo);
+            updateBookingStatement.setInt(2,userId);
+            updateCalenderStatement.setInt(2,userId);
+            updateCalenderStatement.setInt(5,bookingId);
+            updateBookingStatement.setString(3,checkInDate);
+            updateCalenderStatement.setString(3,checkInDate);
+            updateBookingStatement.setString(4, checkOutDate);
+            updateCalenderStatement.setString(4, checkOutDate);
+            updateBookingStatement.setString(5, payType);
+            updateBookingStatement.setString(6, payStatus);
+            updateBookingStatement.setString(7, roomService);
+            updateBookingStatement.setString(8, poolAccess);
+            updateBookingStatement.setString(9, carParking);
+            updateBookingStatement.setInt(10, bookingId);
+
+            //updateStatement.executeUpdate();
+            updateBookingStatement.executeUpdate();
+            updateCalenderStatement.executeUpdate();
             connectDB.close();
 
         } catch (SQLException e) {
@@ -235,6 +275,34 @@ public class DButils {
         }
         return list;
     }
+    public static ArrayList<String> getBookingDetails(Integer bookingid){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        ArrayList<String> list = new ArrayList<>(10);
+
+        try{
+            PreparedStatement getStm =connectDB.prepareStatement( "SELECT * FROM bookings WHERE bookingid=?");
+            getStm.setInt(1,bookingid);
+            ResultSet resultSet = getStm.executeQuery();
+            while (resultSet.next()){
+                list.add(Integer.toString(resultSet.getInt(2)));
+                list.add(Integer.toString(resultSet.getInt(3)));
+                list.add((resultSet.getString(4)));
+                list.add((resultSet.getString(5)));
+                list.add((resultSet.getString(6)));
+                list.add((resultSet.getString(7)));
+                list.add((resultSet.getString(8)));
+                list.add((resultSet.getString(9)));
+                list.add((resultSet.getString(10)));
+                list.add((Integer.toString(resultSet.getInt("bookingid"))));
+            }
+            connectDB.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception");
+        }
+        return list;
+    }
     public static String getRoomType(String roomNo){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
@@ -292,6 +360,23 @@ public class DButils {
             ResultSet resultSet = getLastIdStatement.executeQuery("SELECT id FROM users WHERE ROWID IN ( SELECT max( ROWID ) FROM users)" );
 
                 id=resultSet.getInt("id");
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            System.out.println("SQL Exception");
+        }
+        return id;
+    }
+    public static int getLastBookingId(){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        int id=0;
+
+        try {
+            Statement getLastIdStatement = connectDB.createStatement();
+            ResultSet resultSet = getLastIdStatement.executeQuery("SELECT bookingid FROM bookings WHERE ROWID IN ( SELECT max( ROWID ) FROM bookings)" );
+
+                id=resultSet.getInt("bookingid");
             connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
