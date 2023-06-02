@@ -290,6 +290,26 @@ public class DButils {
         }
         return list;
     }
+    public static String getUserName(int userId){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        String firstname = "",lastname="";
+
+        try{
+            PreparedStatement getNameStatement = connectDB.prepareStatement("SELECT firstname,lastname FROM users WHERE id=?");
+            getNameStatement.setInt(1,userId);
+            ResultSet resultSet = getNameStatement.executeQuery();
+            while (resultSet.next()){
+                firstname = resultSet.getString("firstname");
+                lastname = resultSet.getString("lastname");
+            }
+            connectDB.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception");
+        }
+        return firstname+" "+lastname;
+    }
     public static ArrayList<String> getBookingDetails(Integer bookingid){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();

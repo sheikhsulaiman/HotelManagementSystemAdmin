@@ -1,6 +1,7 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
+import com.hotel.hoteladmin.utils.PdfExport;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import com.hotel.hoteladmin.utils.Value;
 import com.hotel.hoteladmin.utils.pricechart.PriceChart;
@@ -183,6 +184,13 @@ public class ModifyBookingController implements Initializable {
                     }
                 });
 
+            }
+        });
+
+        btn_printReceipt.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                PdfExport.printInvoice(Integer.parseInt(list.get(9)),Integer.parseInt(cb_roomNo.getValue()), Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue(), cb_payStatus.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO");
             }
         });
     }
