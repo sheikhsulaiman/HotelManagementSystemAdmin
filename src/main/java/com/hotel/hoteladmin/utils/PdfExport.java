@@ -33,7 +33,7 @@ public class PdfExport {
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pdf Document(*.pdf)", "Invoice.pdf"));
-            fileChooser.setInitialFileName("Invoice");
+            fileChooser.setInitialFileName("Invoice_"+bookingId);
             //fileChooser.setInitialFileName("Report.xls");
             PdfWriter pdfWriter = new PdfWriter(new FileOutputStream(fileChooser.showSaveDialog(new Stage())));
 

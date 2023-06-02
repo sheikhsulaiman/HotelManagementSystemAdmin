@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/ModifyBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/ModifyBookingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/PdfExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/PdfExport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/booking.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +189,7 @@
       <workItem from="1685625572169" duration="6358000" />
       <workItem from="1685633675152" duration="4337000" />
       <workItem from="1685666133097" duration="4007000" />
-      <workItem from="1685679917788" duration="5211000" />
+      <workItem from="1685679917788" duration="5952000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -413,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685670157486</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fix invoice number and table">
+      <created>1685687002023</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1685687002023</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,7 +433,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add last registered user id retrive button" />
     <MESSAGE value="refactor method for roomType choose box" />
     <MESSAGE value="create method for roomNo choose box" />
     <MESSAGE value="add booking functionalities and booking table in database" />
@@ -456,6 +457,7 @@
     <MESSAGE value="add cancelBooking functionalities" />
     <MESSAGE value="add printInvoice functionalities to modifyBooking scene without fixing invoice no" />
     <MESSAGE value="add printInvoice functionalities to modifyBooking scene without fixing invoice number" />
-    <option name="LAST_COMMIT_MESSAGE" value="add printInvoice functionalities to modifyBooking scene without fixing invoice number" />
+    <MESSAGE value="fix invoice number and table" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix invoice number and table" />
   </component>
 </project>
