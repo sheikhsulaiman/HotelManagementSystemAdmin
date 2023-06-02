@@ -247,6 +247,55 @@ public class DButils {
 
     }
 
+    public static int getInvoiceId(int bookingId){
+        DataBaseConnection connectNow = new DataBaseConnection();
+        Connection connectDB = connectNow.getDatabaseLink();
+
+        int id=0;
+        try{
+            PreparedStatement getIdStatement = connectDB.prepareStatement("SELECT invoiceno FROM moneyVault WHERE bookingid=?");
+            getIdStatement.setInt(1,bookingId);
+            ResultSet resultSet= getIdStatement.executeQuery();
+            while (resultSet.next()){
+                id=resultSet.getInt(1);
+            }
+            return id;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void createNewInvoice(int bookingId,int cost,String status){
+        DataBaseConnection connectNow = new DataBaseConnection();
+        Connection connectDB = connectNow.getDatabaseLink();
+        try{
+            PreparedStatement updateInvoceStatement = connectDB.prepareStatement("INSERT INTO moneyVault(bookingid,cost,status) VALUES(?,?,?) ");
+            updateInvoceStatement.setInt(1,bookingId);
+            updateInvoceStatement.setInt(2,cost);
+            updateInvoceStatement.setString(3,status);
+            updateInvoceStatement.executeUpdate();
+            connectDB.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void updateInvoice(int bookingId,int cost,String status){
+        DataBaseConnection connectNow = new DataBaseConnection();
+        Connection connectDB = connectNow.getDatabaseLink();
+        try{
+            PreparedStatement updateInvoceStatement = connectDB.prepareStatement("UPDATE moneyVault SET cost=?,status=? WHERE bookingid=?");
+            updateInvoceStatement.setInt(3,bookingId);
+            updateInvoceStatement.setInt(1,cost);
+            updateInvoceStatement.setString(2,status);
+            updateInvoceStatement.executeUpdate();
+            connectDB.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
         public static ArrayList<String> getRooms(String roomType){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();

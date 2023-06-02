@@ -26,7 +26,7 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 public class PdfExport {
-    public static void printInvoice(int bookingId,int roomNo,int userId,String checkInDate,String checkOutDate,String payType,String payStatus,String roomService,String poolAccess,String carParking){
+    public static void printInvoice(int invoiceNo,int bookingId,int roomNo,int userId,String checkInDate,String checkOutDate,String payType,String payStatus,String roomService,String poolAccess,String carParking){
 
         ArrayList<String> list = DButils.getBookingDetails(bookingId);
 
@@ -71,7 +71,7 @@ public class PdfExport {
                 .setBold()
                 .setBorder(Border.NO_BORDER));
         customerInformationTable.addCell(new Cell().add("Invoice No.").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT).setMarginRight(5f));
-        customerInformationTable.addCell(new Cell().add("1234").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER).setFontColor(new DeviceRgb(0,128,0)));
+        customerInformationTable.addCell(new Cell().add(Integer.toString(invoiceNo)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER).setFontColor(new DeviceRgb(0,128,0)));
         customerInformationTable.addCell(new Cell().add("Name"));
         customerInformationTable.addCell(new Cell().add(DButils.getUserName(userId)));
         customerInformationTable.addCell(new Cell().add("ID").setTextAlignment(TextAlignment.CENTER));

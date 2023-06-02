@@ -1,20 +1,17 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
-import com.hotel.hoteladmin.encryption.Encrypt;
+import com.hotel.hoteladmin.utils.PdfExport;
 import com.hotel.hoteladmin.utils.pricechart.PriceChart;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
+import org.sqlite.core.DB;
 
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -22,14 +19,6 @@ import java.util.ResourceBundle;
 
 
 public class BookingController implements Initializable {
-//    Encrypt encrypt;
-//    void test(){
-//        super.test();
-//        encrypt.setAlgorithm("md5");
-//        encrypt.setPassword("1234");
-//        encrypt.encrypt();
-//        System.out.println(encrypt.newPassword);
-//    }
 
     @FXML
     private Label l_predictedPrice;
@@ -75,6 +64,9 @@ public class BookingController implements Initializable {
 
     @FXML
     private TextField tf_user_id;
+
+    @FXML
+    private RadioButton rBtn_print;
 
 
     @Override
@@ -139,7 +131,12 @@ public class BookingController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     DButils.newBooking(Integer.parseInt(cb_roomNo.getValue()), Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue()==null?"Cash":cb_payType.getValue(), cb_payStatus.getValue()==null?"Unpaid":cb_payStatus.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO");
+                    DButils.createNewInvoice(DButils.getLastBookingId(),PriceChart.calculatePrice(cb_roomNo.getValue(), dp_checkIn.getValue(), dp_checkOut.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO"),cb_payStatus.getValue()==null?"Unpaid":cb_payStatus.getValue());
                     SceneSwitcher.closeWindow(event);
+                    int bookingId = DButils.getLastBookingId();
+                    if(rBtn_print.isSelected()){
+                        PdfExport.printInvoice(DButils.getInvoiceId(bookingId),bookingId,Integer.parseInt(cb_roomNo.getValue()), Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue()==null?"Cash":cb_payType.getValue(), cb_payStatus.getValue()==null?"Unpaid":cb_payStatus.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO");
+                    }
                     Alert alert =new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Confirmation");
                     alert.setContentText("Booking Successfull");
@@ -155,7 +152,9 @@ public class BookingController implements Initializable {
         btn_predictPrice.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               l_predictedPrice.setText("$ "+Integer.toString(PriceChart.calculatePrice(cb_roomNo.getValue(),dp_checkIn.getValue(),dp_checkOut.getValue(), ckb_roomService.isSelected()?"YES":"NO", ckb_carParking.isSelected()?"YES":"NO", ckb_poolAccess.isSelected()?"YES":"NO")));
+                try {
+                    l_predictedPrice.setText("$ " + Integer.toString(PriceChart.calculatePrice(cb_roomNo.getValue(), dp_checkIn.getValue(), dp_checkOut.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO")));
+                }catch (NumberFormatException e){}
             }
         });
 
