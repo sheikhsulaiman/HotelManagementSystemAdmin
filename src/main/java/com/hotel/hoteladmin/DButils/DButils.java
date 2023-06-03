@@ -359,6 +359,26 @@ public class DButils {
         }
         return firstname+" "+lastname;
     }
+
+    public static boolean getUserExistance(String userId,String password){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        ResultSet resultSet=null ;
+        boolean result=false;
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement("SELECT * FROM users WHERE id=? AND password = ?");
+            preparedStatement.setInt(1,Integer.parseInt(userId));
+            preparedStatement.setString(2,password);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                result = true;
+            }
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     public static ArrayList<String> getBookingDetails(Integer bookingid){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
