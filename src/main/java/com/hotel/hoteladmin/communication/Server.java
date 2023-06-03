@@ -31,16 +31,15 @@ public class Server extends Thread{
 
                 switch (list[0]){
                     case "logInRequest":
-                        System.out.println(Arrays.toString(list));
-                        System.out.println(DButils.getUserExistance(list[1],list[2]));
-                        if(DButils.getUserExistance(list[1],list[2])){
-                            str = "true";
-                        }else {
-                            str = "false";
-                        }
+                        //System.out.println(Arrays.toString(list));
+                        //System.out.println(DButils.getUserExistance(list[1],list[2]));
+                        str=DButils.getUserExistance(list[1],list[2]);
                         break;
                     case "getBookingsOf":
                         str = DButils.getBookingsOf(list[1]);
+                        break;
+                    case "getRooms":
+                        str = DButils.getRoomsList();
                         break;
                 }
                 //s1 = new StringBuilder(str);

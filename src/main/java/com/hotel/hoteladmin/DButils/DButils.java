@@ -360,27 +360,35 @@ public class DButils {
         return firstname+" "+lastname;
     }
 
-    public static boolean getUserExistance(String userId,String password){
+    public static String getUserExistance(String userId,String password){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
         ResultSet resultSet=null ;
         Encrypt encrypt = new Encrypt();
         encrypt.setAlgorithm("md5");
         String pass = encrypt.encrypt(password);
-        boolean result=false;
+        String output="";
         try {
-            PreparedStatement preparedStatement = connectDB.prepareStatement("SELECT * FROM users WHERE id=? AND password = ?");
+            PreparedStatement preparedStatement = connectDB.prepareStatement("SELECT * from users WHERE id=? AND password = ?");
             preparedStatement.setInt(1,Integer.parseInt(userId));
             preparedStatement.setString(2,pass);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
-                result = true;
+            if (resultSet.next()){
+                output = output+(resultSet.getInt(1));
+                output = output+","+resultSet.getString(2);
+                output = output+","+resultSet.getString(3);
+                output = output+","+resultSet.getInt(4);
+                output = output+","+resultSet.getString(5);
+                output = output+","+resultSet.getString(6);
+                output = output+","+resultSet.getString(7);
+            }else {
+                output = "false";
             }
             connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return result;
+        return output;
     }
 
     public static int getBalance(){
@@ -419,6 +427,28 @@ public class DButils {
                 output = output+","+resultSet.getString(8);
                 output = output+","+resultSet.getString(9);
                 output = output+","+resultSet.getString(10);
+
+                output = output+":";
+            }
+            int lastIndex = output.lastIndexOf(':');
+            output = output.substring(0,lastIndex);
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+    public static String getRoomsList(){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        ResultSet resultSet=null ;
+        String output="";
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement("SELECT * from rooms");
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                output = output+(resultSet.getInt(1));
+                output = output+","+resultSet.getString(2);
 
                 output = output+":";
             }
