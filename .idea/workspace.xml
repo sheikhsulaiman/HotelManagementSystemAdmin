@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
+    <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="create user existence checker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/PdfExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/PdfExport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/communication/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/communication/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +194,18 @@
       <workItem from="1685625572169" duration="6358000" />
       <workItem from="1685633675152" duration="4337000" />
       <workItem from="1685666133097" duration="4007000" />
-      <workItem from="1685679917788" duration="5952000" />
+      <workItem from="1685679917788" duration="5989000" />
+      <workItem from="1685695212301" duration="822000" />
+      <workItem from="1685696055157" duration="31000" />
+      <workItem from="1685698087579" duration="3118000" />
+      <workItem from="1685706861358" duration="2604000" />
+      <workItem from="1685709496609" duration="11000" />
+      <workItem from="1685709654571" duration="3373000" />
+      <workItem from="1685750013044" duration="4671000" />
+      <workItem from="1685758029666" duration="18000" />
+      <workItem from="1685760435708" duration="6597000" />
+      <workItem from="1685782696819" duration="3152000" />
+      <workItem from="1685790730546" duration="1127000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -415,7 +431,35 @@
       <option name="project" value="LOCAL" />
       <updated>1685687002023</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="fix default name for invoice">
+      <created>1685687500797</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1685687500797</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add server">
+      <created>1685754598092</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1685754598092</updated>
+    </task>
+    <task id="LOCAL-00035" summary="create instance of StartServer at App.java">
+      <created>1685754676827</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1685754676827</updated>
+    </task>
+    <task id="LOCAL-00036" summary="create user existence checker">
+      <created>1685754742600</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1685754742600</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,10 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor method for roomType choose box" />
-    <MESSAGE value="create method for roomNo choose box" />
-    <MESSAGE value="add booking functionalities and booking table in database" />
-    <MESSAGE value="add PriceChart and PricePrediction functionalities" />
     <MESSAGE value="send PriceChart to a package and style improvement" />
     <MESSAGE value="add customer refresh button" />
     <MESSAGE value="add AdminLogin functionalities" />
@@ -458,6 +498,10 @@
     <MESSAGE value="add printInvoice functionalities to modifyBooking scene without fixing invoice no" />
     <MESSAGE value="add printInvoice functionalities to modifyBooking scene without fixing invoice number" />
     <MESSAGE value="fix invoice number and table" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix invoice number and table" />
+    <MESSAGE value="fix default name for invoice" />
+    <MESSAGE value="add server" />
+    <MESSAGE value="create instance of StartServer at App.java" />
+    <MESSAGE value="create user existence checker" />
+    <option name="LAST_COMMIT_MESSAGE" value="create user existence checker" />
   </component>
 </project>

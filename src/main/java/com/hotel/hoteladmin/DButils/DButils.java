@@ -364,11 +364,14 @@ public class DButils {
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
         ResultSet resultSet=null ;
+        Encrypt encrypt = new Encrypt();
+        encrypt.setAlgorithm("md5");
+        String pass = encrypt.encrypt(password);
         boolean result=false;
         try {
             PreparedStatement preparedStatement = connectDB.prepareStatement("SELECT * FROM users WHERE id=? AND password = ?");
             preparedStatement.setInt(1,Integer.parseInt(userId));
-            preparedStatement.setString(2,password);
+            preparedStatement.setString(2,pass);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 result = true;
@@ -378,6 +381,54 @@ public class DButils {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static int getBalance(){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        ResultSet resultSet=null ;
+        int balance=0;
+        try {
+            Statement getBalanceStatement = connectDB.createStatement();
+            resultSet = getBalanceStatement.executeQuery("SELECT SUM(cost) FROM moneyVault WHERE status='Paid'");
+            if(resultSet.next()){
+                balance=resultSet.getInt("SUM(cost)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return balance;
+    }
+    public static String getBookingsOf(String userId){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        ResultSet resultSet=null ;
+        String output="";
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement("SELECT * from bookings WHERE userid=?");
+            preparedStatement.setInt(1,Integer.parseInt(userId));
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                output = output+(resultSet.getInt(1));
+                output = output+","+resultSet.getInt(2);
+                output = output+","+resultSet.getInt(3);
+                output = output+","+resultSet.getString(4);
+                output = output+","+resultSet.getString(5);
+                output = output+","+resultSet.getString(6);
+                output = output+","+resultSet.getString(7);
+                output = output+","+resultSet.getString(8);
+                output = output+","+resultSet.getString(9);
+                output = output+","+resultSet.getString(10);
+
+                output = output+":";
+            }
+            int lastIndex = output.lastIndexOf(':');
+            output = output.substring(0,lastIndex);
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
     }
     public static ArrayList<String> getBookingDetails(Integer bookingid){
         DataBaseConnection dbConnection = new DataBaseConnection();

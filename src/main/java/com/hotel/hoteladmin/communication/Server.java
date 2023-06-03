@@ -38,6 +38,10 @@ public class Server extends Thread{
                         }else {
                             str = "false";
                         }
+                        break;
+                    case "getBookingsOf":
+                        str = DButils.getBookingsOf(list[1]);
+                        break;
                 }
                 //s1 = new StringBuilder(str);
                 //s1.reverse();

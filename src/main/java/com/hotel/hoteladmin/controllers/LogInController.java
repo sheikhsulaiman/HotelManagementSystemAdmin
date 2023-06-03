@@ -32,8 +32,7 @@ public class LogInController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if(DButils.resolveAdminLogin(tf_userName.getText(),pf_password.getText())){
-                    SceneSwitcher.changeSceneToNewWindow("../app-main.fxml","Hotel Admin");
-                    SceneSwitcher.closeWindow(event);
+                    SceneSwitcher.changeScene(event,"../app-main.fxml","Hotel Admin");
                 }else {
                     l_message.setText("Wrong Credential");
                 }

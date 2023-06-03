@@ -114,6 +114,8 @@ public class AppController implements Initializable {
     private Rooms room;
     private Bookings bookings;
     @FXML
+    private Label l_total_money;
+    @FXML
     void selectRow(MouseEvent event) {
 
         room = tv_rooms.getSelectionModel().getSelectedItem();
@@ -126,6 +128,7 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        l_total_money.setText("$ "+(DButils.getBalance()));
         tv_bookings.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
             @Override
             public void handle(ContextMenuEvent contextMenuEvent) {
