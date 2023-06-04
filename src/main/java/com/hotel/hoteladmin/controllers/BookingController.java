@@ -9,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import org.sqlite.core.DB;
 
 import java.net.URL;
 import java.time.LocalDate;

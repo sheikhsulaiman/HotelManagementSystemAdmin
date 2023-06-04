@@ -1,7 +1,6 @@
 package com.hotel.hoteladmin.controllers;
 
 import com.hotel.hoteladmin.DButils.DButils;
-import com.hotel.hoteladmin.DButils.DataBaseConnection;
 import com.hotel.hoteladmin.utils.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
-import java.sql.*;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
@@ -57,7 +55,7 @@ public class SignUpController implements Initializable {
         btn_Resigter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DButils.resigterByAdmin(tf_firstname.getText(),tf_lastname.getText(),Integer.parseInt(tf_phone.getText()),cb_gender.getValue(),tf_email.getText(), ta_address.getText());
+                DButils.register(tf_firstname.getText(),tf_lastname.getText(),Integer.parseInt(tf_phone.getText()),cb_gender.getValue(),tf_email.getText(), ta_address.getText());
                 SceneSwitcher.changeScene(event,"../booking.fxml","New Booking");
             }
         });

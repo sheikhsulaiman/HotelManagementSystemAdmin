@@ -139,7 +139,7 @@
          <children>
             <Button fx:id="cutomer_reload" mnemonicParsing="false" style="-fx-background-color: transparent;">
                <graphic>
-                  <FontIcon iconColor="#007934" iconLiteral="fltfal-arrow-sync-24" iconSize="24" tabSize="0" />
+                  <FontIcon iconColor="#007934" iconLiteral="fltfal-arrow-sync-24" iconSize="24" />
                </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />

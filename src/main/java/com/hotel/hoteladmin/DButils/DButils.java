@@ -8,20 +8,42 @@ import com.hotel.hoteladmin.utils.tables.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
-import org.sqlite.core.DB;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class DButils {
-    public static void resigterByAdmin(String firstname,String lastname,int phone,String gender,String email,String address){
+    public static void register(String firstname, String lastname, int phone, String gender, String email, String address){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
         Encrypt encrypt = new Encrypt();
         encrypt.setAlgorithm("md5");
         String pass = encrypt.encrypt("1234");
+        try {
+            PreparedStatement updateBookingStatement = connectDB.prepareStatement("INSERT INTO users (firstname, lastname, phone, gender, email, address, password) VALUES (?,?,?,?,?,?,?)");
+
+            updateBookingStatement.setString(1,firstname);
+            updateBookingStatement.setString(2, lastname);
+            updateBookingStatement.setInt(3,phone);
+            updateBookingStatement.setString(4, gender);
+            updateBookingStatement.setString(5, email);
+            updateBookingStatement.setString(6, address);
+            updateBookingStatement.setString(7, pass);
+
+            updateBookingStatement.executeUpdate();
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //System.out.println("SQL Exception");
+        }
+    }
+    public static void register(String firstname, String lastname,String password, int phone, String gender, String email, String address){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        Encrypt encrypt = new Encrypt();
+        encrypt.setAlgorithm("md5");
+        String pass = encrypt.encrypt(password);
+        //String output="";
         try {
             PreparedStatement updateBookingStatement = connectDB.prepareStatement("INSERT INTO users (firstname, lastname, phone, gender, email, address, password) VALUES (?,?,?,?,?,?,?)");
 
@@ -78,6 +100,44 @@ public class DButils {
         }
 
     }
+//    public static void newBooking(int roomNo,int userId,String checkInDate,String checkOutDate,String payType,String roomService,String poolAccess,String carParking) {
+//        DataBaseConnection dbConnection = new DataBaseConnection();
+//        Connection connectDB = dbConnection.getDatabaseLink();
+//        try {
+//            PreparedStatement updateBookingStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?)");
+//            PreparedStatement updateCalenderStatement = connectDB.prepareStatement("insert into calender(roomid,userid,start,end,bookingid) values (?,?,?,?,?)");
+//            //PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='booked' WHERE number=?");
+//
+//            //updateStatement.setInt(1,roomNo);
+//            updateBookingStatement.setInt(1, roomNo);
+//            updateCalenderStatement.setInt(1, roomNo);
+//            updateBookingStatement.setInt(2, userId);
+//            updateCalenderStatement.setInt(2, userId);
+//
+//            updateBookingStatement.setString(3, checkInDate);
+//            updateCalenderStatement.setString(3, checkInDate);
+//            updateBookingStatement.setString(4, checkOutDate);
+//            updateCalenderStatement.setString(4, checkOutDate);
+//            updateBookingStatement.setString(5, payType);
+//            updateBookingStatement.setString(6, "Unpaid");
+//            updateBookingStatement.setString(7, roomService);
+//            updateBookingStatement.setString(8, poolAccess);
+//            updateBookingStatement.setString(9, carParking);
+//
+//            //updateStatement.executeUpdate();
+//            updateBookingStatement.executeUpdate();
+//            int bookingId = (DButils.getLastBookingId());
+//            updateCalenderStatement.setInt(5, bookingId);
+//            updateCalenderStatement.executeUpdate();
+//            connectDB.close();
+//
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            //System.out.println("SQL Exception");
+//        }
+//
+//    }
 
     public static void deleteBooking(int bookingId){
         DataBaseConnection dbConnection = new DataBaseConnection();
@@ -89,6 +149,7 @@ public class DButils {
             deleteFromCalenderTableStatement.setInt(1,bookingId);
             deleteFromCalenderTableStatement.executeUpdate();
             deleteFromBookingTableStatement.executeUpdate();
+            connectDB.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -170,14 +231,9 @@ public class DButils {
 
                 searchModelObservableList.add(new Customers(queryUserId,queryPassword,queryFirstname, queryLastname, queryGender, queryPhone, queryEmail, queryAddress));
             }
+            connectDB.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-            try {
-                connectDB.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            e.printStackTrace();
         }
         return searchModelObservableList;
 
@@ -207,14 +263,9 @@ public class DButils {
 
                 searchModelObservableList.add(new Bookings(queryBookingId,queryRoomNo,queryUserid,queryCheckIn,queryCheckOut,queryPayMethod,queryPayStatus,queryRoomService,queryCarParking,queryPoolAccess));
             }
+            connectDB.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            try {
-                connectDB.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
         }
         return searchModelObservableList;
 
@@ -234,14 +285,9 @@ public class DButils {
                 String queryRoomType = queryOutput.getString("type");
                 searchModelObservableList.add(new Rooms(queryRoomNumber, queryRoomType));
             }
+            connectDB.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            try {
-                connectDB.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
         }
         return searchModelObservableList;
 
@@ -259,21 +305,23 @@ public class DButils {
             while (resultSet.next()){
                 id=resultSet.getInt(1);
             }
-            return id;
+            connectDB.close();
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return id;
     }
 
     public static void createNewInvoice(int bookingId,int cost,String status){
         DataBaseConnection connectNow = new DataBaseConnection();
         Connection connectDB = connectNow.getDatabaseLink();
         try{
-            PreparedStatement updateInvoceStatement = connectDB.prepareStatement("INSERT INTO moneyVault(bookingid,cost,status) VALUES(?,?,?) ");
-            updateInvoceStatement.setInt(1,bookingId);
-            updateInvoceStatement.setInt(2,cost);
-            updateInvoceStatement.setString(3,status);
-            updateInvoceStatement.executeUpdate();
+            PreparedStatement updateInvoiceStatement = connectDB.prepareStatement("INSERT INTO moneyVault(bookingid,cost,status) VALUES(?,?,?) ");
+            updateInvoiceStatement.setInt(1,bookingId);
+            updateInvoiceStatement.setInt(2,cost);
+            updateInvoiceStatement.setString(3,status);
+            updateInvoiceStatement.executeUpdate();
             connectDB.close();
 
         } catch (SQLException e) {
@@ -360,7 +408,7 @@ public class DButils {
         return firstname+" "+lastname;
     }
 
-    public static String getUserExistance(String userId,String password){
+    public static String getUserExistence(String userId, String password){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
         ResultSet resultSet=null ;
@@ -402,6 +450,7 @@ public class DButils {
             if(resultSet.next()){
                 balance=resultSet.getInt("SUM(cost)");
             }
+            connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -431,7 +480,34 @@ public class DButils {
                 output = output+":";
             }
             int lastIndex = output.lastIndexOf(':');
-            output = output.substring(0,lastIndex);
+            if(lastIndex!=(-1))
+                output = output.substring(0,lastIndex);
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+    public static String getCalendar(){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        ResultSet resultSet=null ;
+        String output="";
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement("select id,roomid,start,end from calender");
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                output = output+(resultSet.getInt(1));
+                output = output+","+resultSet.getInt(2);
+                output = output+","+resultSet.getString(3);
+                output = output+","+resultSet.getString(4);
+
+                output = output+":";
+            }
+            int lastIndex = output.lastIndexOf(':');
+            if(lastIndex!=(-1)) {
+                output = output.substring(0, lastIndex);
+            }
             connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -552,6 +628,24 @@ public class DButils {
         }
         return id;
     }
+    public static String getPassword(String userId){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+        String pass="";
+
+        try {
+            PreparedStatement getPasswordStatement = connectDB.prepareStatement("SELECT password from users WHERE id=?");
+            getPasswordStatement.setInt(1,Integer.parseInt(userId));
+            ResultSet resultSet = getPasswordStatement.executeQuery();
+            if(resultSet.next())
+                pass=resultSet.getString("password");
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            System.out.println("SQL Exception");
+        }
+        return pass;
+    }
     public static int getLastBookingId(){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
@@ -589,15 +683,9 @@ public class DButils {
                     list.add(Integer.toString(roomid));
                 }
             }
-
+            connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            try{
-                connectDB.close();
-            } catch (SQLException e) {
-               e.printStackTrace();
-            }
         }
         return list;
     }
