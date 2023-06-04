@@ -7,12 +7,11 @@
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DataBaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/communication/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/communication/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/communication/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/communication/StartServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/ModifyBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/ModifyBookingController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +213,8 @@
       <workItem from="1685857947502" duration="1436000" />
       <workItem from="1685867595140" duration="11370000" />
       <workItem from="1685888101632" duration="1235000" />
-      <workItem from="1685891089441" duration="5305000" />
+      <workItem from="1685891089441" duration="5619000" />
+      <workItem from="1685911301766" duration="6685000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -489,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685800507901</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="resolve new booking by client">
+      <created>1685897576395</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1685897576395</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add AdminLogin functionalities" />
     <MESSAGE value="login scene add building and label" />
     <MESSAGE value="add logout functionalities" />
     <MESSAGE value="complete all tables" />
@@ -532,6 +538,7 @@
     <MESSAGE value="create user existence checker" />
     <MESSAGE value="add total balance label" />
     <MESSAGE value="update user check request add getRooms for client" />
-    <option name="LAST_COMMIT_MESSAGE" value="update user check request add getRooms for client" />
+    <MESSAGE value="resolve new booking by client" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve new booking by client" />
   </component>
 </project>

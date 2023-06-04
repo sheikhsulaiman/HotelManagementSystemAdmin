@@ -49,6 +49,16 @@ public class Server extends Thread{
                     case "getCalendar":
                         str = DButils.getCalendar();
                         break;
+                    case "getInvoice":
+                        str = Integer.toString(DButils.getInvoiceId(Integer.parseInt(list[1])));
+                        break;
+                    case "createNewInvoice":
+                        DButils.createNewInvoice(Integer.parseInt(list[1]) ,Integer.parseInt(list[2]) ,list[3]);
+                        str="true";
+                        break;
+                    case "getBookingDetailsForClient":
+                        str = DButils.getBookingDetailsForClient(DButils.getLastBookingId());
+                        break;
                 }
                 //s1 = new StringBuilder(str);
                 //s1.reverse();

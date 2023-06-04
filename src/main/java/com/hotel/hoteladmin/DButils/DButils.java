@@ -564,6 +564,39 @@ public class DButils {
         }
         return list;
     }
+    public static String getBookingDetailsForClient(Integer bookingid){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        //ArrayList<String> list = new ArrayList<>(10);
+        String output="";
+        try{
+            PreparedStatement getStm =connectDB.prepareStatement( "SELECT * FROM bookings WHERE bookingid=?");
+            getStm.setInt(1,bookingid);
+            ResultSet resultSet = getStm.executeQuery();
+            while (resultSet.next()){
+                output = output+(resultSet.getInt(1));
+                output = output+","+resultSet.getInt(2);
+                output = output+","+resultSet.getInt(3);
+                output = output+","+resultSet.getString(4);
+                output = output+","+resultSet.getString(5);
+                output = output+","+resultSet.getString(6);
+                output = output+","+resultSet.getString(7);
+                output = output+","+resultSet.getString(8);
+                output = output+","+resultSet.getString(9);
+                output = output+","+resultSet.getString(10);
+
+                output = output+":";
+            }
+            int lastIndex = output.lastIndexOf(':');
+            if(lastIndex!=(-1))
+                output = output.substring(0,lastIndex);
+            connectDB.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception");
+        }
+        return output;
+    }
     public static String getRoomType(String roomNo){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
@@ -662,6 +695,20 @@ public class DButils {
 //            System.out.println("SQL Exception");
         }
         return id;
+    }
+
+    public static void updateMoneyVault(int bookingId,String status){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        try{
+            PreparedStatement updateCostStatement = connectDB.prepareStatement("UPDATE moneyVault SET status=? WHERE bookingid=?;");
+            updateCostStatement.setInt(2,bookingId);
+            updateCostStatement.setString(1,status);
+            updateCostStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<String> getBookedRooms(DatePicker dp_checkin,DatePicker dp_checkout){

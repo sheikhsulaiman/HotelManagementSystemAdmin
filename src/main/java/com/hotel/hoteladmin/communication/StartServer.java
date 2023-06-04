@@ -8,7 +8,7 @@ public class StartServer extends Thread{
     public void run(){
         ServerSocket ss = null;
         try {
-            ss = new ServerSocket(1234);
+            ss = new ServerSocket(9999);
         } catch (IOException e) {
             e.printStackTrace();
         }

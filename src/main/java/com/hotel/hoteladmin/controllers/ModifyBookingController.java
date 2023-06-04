@@ -143,10 +143,11 @@ public class ModifyBookingController implements Initializable {
                 try {
                     DButils.updateBooking(Integer.parseInt(list.get(9)),Integer.parseInt(cb_roomNo.getValue()), Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue(), cb_payStatus.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO");
                     DButils.updateInvoice(Integer.parseInt(list.get(9)),PriceChart.calculatePrice(cb_roomNo.getValue(), dp_checkIn.getValue(), dp_checkOut.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO"),cb_payStatus.getValue());
+                    DButils.updateMoneyVault(Integer.parseInt(list.get(9)),cb_payStatus.getValue());
                     SceneSwitcher.closeWindow(event);
                     Alert alert =new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Confirmation");
-                    alert.setContentText("Booking Successfull");
+                    alert.setContentText("Booking has been edited successfully");
                     alert.show();
                 }catch (NumberFormatException e){
                     Alert alert = new Alert(Alert.AlertType.ERROR);

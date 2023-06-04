@@ -188,6 +188,9 @@ public class AppController implements Initializable {
         cutomer_reload.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                l_total_money.setText("$ "+(DButils.getBalance()));
+
                 // Customer Table
                 ObservableList<Customers> searchModelCustomerObservableList = DButils.getCustomerTable();
 
