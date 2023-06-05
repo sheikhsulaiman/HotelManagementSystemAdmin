@@ -37,6 +37,31 @@ public class DButils {
             //System.out.println("SQL Exception");
         }
     }
+    public static String updateProfile(String firstname, String lastname, int phone, String gender, String email, String address,int id,String password){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        try {
+            PreparedStatement updateBookingStatement = connectDB.prepareStatement("UPDATE users SET firstname=?,lastname=?,phone=?,gender=?,email=?,address=?,password=? WHERE id=?");
+
+            updateBookingStatement.setString(1,firstname);
+            updateBookingStatement.setString(2, lastname);
+            updateBookingStatement.setInt(3,phone);
+            updateBookingStatement.setString(4, gender);
+            updateBookingStatement.setString(5, email);
+            updateBookingStatement.setString(6, address);
+            updateBookingStatement.setString(7,password);
+            updateBookingStatement.setInt(8, id);
+
+            updateBookingStatement.executeUpdate();
+            connectDB.close();
+            return "true";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "false";
+            //System.out.println("SQL Exception");
+        }
+    }
     public static void register(String firstname, String lastname,String password, int phone, String gender, String email, String address){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
@@ -344,7 +369,7 @@ public class DButils {
         }
     }
 
-        public static ArrayList<String> getRooms(String roomType){
+    public static ArrayList<String> getRooms(String roomType){
         DataBaseConnection dbConnection = new DataBaseConnection();
         Connection connectDB = dbConnection.getDatabaseLink();
 
@@ -423,12 +448,12 @@ public class DButils {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 output = output+(resultSet.getInt(1));
-                output = output+","+resultSet.getString(2);
-                output = output+","+resultSet.getString(3);
-                output = output+","+resultSet.getInt(4);
-                output = output+","+resultSet.getString(5);
-                output = output+","+resultSet.getString(6);
-                output = output+","+resultSet.getString(7);
+                output = output+"~"+resultSet.getString(2);
+                output = output+"~"+resultSet.getString(3);
+                output = output+"~"+resultSet.getInt(4);
+                output = output+"~"+resultSet.getString(5);
+                output = output+"~"+resultSet.getString(6);
+                output = output+"~"+resultSet.getString(7);
             }else {
                 output = "false";
             }
@@ -467,15 +492,15 @@ public class DButils {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 output = output+(resultSet.getInt(1));
-                output = output+","+resultSet.getInt(2);
-                output = output+","+resultSet.getInt(3);
-                output = output+","+resultSet.getString(4);
-                output = output+","+resultSet.getString(5);
-                output = output+","+resultSet.getString(6);
-                output = output+","+resultSet.getString(7);
-                output = output+","+resultSet.getString(8);
-                output = output+","+resultSet.getString(9);
-                output = output+","+resultSet.getString(10);
+                output = output+"~"+resultSet.getInt(2);
+                output = output+"~"+resultSet.getInt(3);
+                output = output+"~"+resultSet.getString(4);
+                output = output+"~"+resultSet.getString(5);
+                output = output+"~"+resultSet.getString(6);
+                output = output+"~"+resultSet.getString(7);
+                output = output+"~"+resultSet.getString(8);
+                output = output+"~"+resultSet.getString(9);
+                output = output+"~"+resultSet.getString(10);
 
                 output = output+":";
             }
@@ -498,9 +523,9 @@ public class DButils {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 output = output+(resultSet.getInt(1));
-                output = output+","+resultSet.getInt(2);
-                output = output+","+resultSet.getString(3);
-                output = output+","+resultSet.getString(4);
+                output = output+"~"+resultSet.getInt(2);
+                output = output+"~"+resultSet.getString(3);
+                output = output+"~"+resultSet.getString(4);
 
                 output = output+":";
             }
@@ -524,7 +549,7 @@ public class DButils {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 output = output+(resultSet.getInt(1));
-                output = output+","+resultSet.getString(2);
+                output = output+"~"+resultSet.getString(2);
 
                 output = output+":";
             }
@@ -576,15 +601,15 @@ public class DButils {
             ResultSet resultSet = getStm.executeQuery();
             while (resultSet.next()){
                 output = output+(resultSet.getInt(1));
-                output = output+","+resultSet.getInt(2);
-                output = output+","+resultSet.getInt(3);
-                output = output+","+resultSet.getString(4);
-                output = output+","+resultSet.getString(5);
-                output = output+","+resultSet.getString(6);
-                output = output+","+resultSet.getString(7);
-                output = output+","+resultSet.getString(8);
-                output = output+","+resultSet.getString(9);
-                output = output+","+resultSet.getString(10);
+                output = output+="~"+resultSet.getInt(2);
+                output = output+="~"+resultSet.getInt(3);
+                output = output+="~"+resultSet.getString(4);
+                output = output+="~"+resultSet.getString(5);
+                output = output+="~"+resultSet.getString(6);
+                output = output+="~"+resultSet.getString(7);
+                output = output+="~"+resultSet.getString(8);
+                output = output+="~"+resultSet.getString(9);
+                output = output+="~"+resultSet.getString(10);
 
                 output = output+":";
             }

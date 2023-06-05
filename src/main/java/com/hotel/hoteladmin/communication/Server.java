@@ -1,11 +1,13 @@
 package com.hotel.hoteladmin.communication;
 
 import com.hotel.hoteladmin.DButils.DButils;
+import com.hotel.hoteladmin.encryption.Encrypt;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class Server extends Thread{
 
@@ -15,6 +17,8 @@ public class Server extends Thread{
     Socket stk;
 
     public void run(){
+        Encrypt encrypt = new Encrypt();
+        encrypt.setAlgorithm("md5");
         try {
             DataInputStream din = new DataInputStream(stk.getInputStream());
             DataOutputStream dout = new DataOutputStream(stk.getOutputStream());
@@ -23,11 +27,11 @@ public class Server extends Thread{
             //StringBuilder s1;
             do{
                 str = (String) din.readUTF();
-                list = str.split(",");
+                list = str.split("~");
 
                 switch (list[0]){
                     case "logInRequest":
-                        //System.out.println(Arrays.toString(list));
+                        System.out.println(Arrays.toString(list));
                         //System.out.println(DButils.getUserExistance(list[1],list[2]));
                         str=DButils.getUserExistence(list[1],list[2]);
                         break;
@@ -58,6 +62,13 @@ public class Server extends Thread{
                         break;
                     case "getBookingDetailsForClient":
                         str = DButils.getBookingDetailsForClient(DButils.getLastBookingId());
+                        break;
+                    case "updateProfile":
+                        for (String data:
+                             list) {
+                            System.out.println(data);
+                        }
+                        str=DButils.updateProfile(list[1],list[2],Integer.parseInt(list[3]),list[4],list[5],list[6],Integer.parseInt(list[7]),list.length<9?DButils.getPassword(list[7]):encrypt.encrypt(list[8]));
                         break;
                 }
                 //s1 = new StringBuilder(str);
