@@ -180,8 +180,7 @@ public class AppController implements Initializable {
         btn_logOut.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SceneSwitcher.closeWindow(event);
-                SceneSwitcher.changeSceneToNewWindow("../login.fxml","Log In");
+                SceneSwitcher.changeScene(event,"../login.fxml","Log In");
             }
         });
         btn_newbooking.setOnAction(event -> SceneSwitcher.changeSceneToNewWindow("../booking.fxml","New Booking"));
