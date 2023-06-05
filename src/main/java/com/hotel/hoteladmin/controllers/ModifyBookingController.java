@@ -118,6 +118,8 @@ public class ModifyBookingController implements Initializable {
             }
         });
 
+        cb_roomType.getItems().add("any");
+        cb_roomType.getItems().addAll(DButils.getRoomType());
         cb_roomType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -136,11 +138,11 @@ public class ModifyBookingController implements Initializable {
             }
         });
 
-
         btn_updateBooking.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
+
                     DButils.updateBooking(Integer.parseInt(list.get(9)),Integer.parseInt(cb_roomNo.getValue()), Integer.parseInt(tf_user_id.getText()), dp_checkIn.getValue().toString(), dp_checkOut.getValue().toString(), cb_payType.getValue(), cb_payStatus.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO");
                     DButils.updateInvoice(Integer.parseInt(list.get(9)),PriceChart.calculatePrice(cb_roomNo.getValue(), dp_checkIn.getValue(), dp_checkOut.getValue(), ckb_roomService.isSelected() ? "YES" : "NO", ckb_carParking.isSelected() ? "YES" : "NO", ckb_poolAccess.isSelected() ? "YES" : "NO"),cb_payStatus.getValue());
                     DButils.updateMoneyVault(Integer.parseInt(list.get(9)),cb_payStatus.getValue());

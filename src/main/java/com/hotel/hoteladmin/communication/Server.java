@@ -70,6 +70,19 @@ public class Server extends Thread{
                         }
                         str=DButils.updateProfile(list[1],list[2],Integer.parseInt(list[3]),list[4],list[5],list[6],Integer.parseInt(list[7]),list.length<9?DButils.getPassword(list[7]):encrypt.encrypt(list[8]));
                         break;
+                    case "deleteBooking":
+                        DButils.deleteBooking(Integer.parseInt(list[1]));
+                        str = "true";
+                        break;
+                    case "updateBooking":
+                        DButils.updateBooking(Integer.parseInt(list[1]),Integer.parseInt(list[2]),Integer.parseInt(list[3]),list[4],list[5],list[6],list[7],list[8],list[9],list[10]);
+                        break;
+                    case "updateMoneyVault":
+                        DButils.updateMoneyVault(Integer.parseInt(list[1]),list[2]);
+                        break;
+                    case "updateInvoice":
+                        DButils.updateInvoice(Integer.parseInt(list[1]),Integer.parseInt(list[2]),list[3]);
+                        break;
                 }
                 //s1 = new StringBuilder(str);
                 //s1.reverse();
