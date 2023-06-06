@@ -18,7 +18,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
@@ -116,6 +118,16 @@ public class AppController implements Initializable {
     @FXML
     private Label l_total_money;
     @FXML
+    private Label l_ipAddress;
+    @FXML
+    void hideIp(MouseEvent event) {
+        l_ipAddress.setVisible(false);
+    }
+    @FXML
+    void showIp(MouseEvent event) {
+        l_ipAddress.setVisible(true);
+    }
+    @FXML
     void selectRow(MouseEvent event) {
 
         room = tv_rooms.getSelectionModel().getSelectedItem();
@@ -127,6 +139,12 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            l_ipAddress.setText("IP: " + InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException e) {
+            l_ipAddress.setText("Ip not found.");
+        }
 
         l_total_money.setText("$ "+(DButils.getBalance()));
         tv_bookings.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
