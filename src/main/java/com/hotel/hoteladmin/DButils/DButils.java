@@ -5,6 +5,7 @@ import com.hotel.hoteladmin.utils.daterangechecker.DateRangeComparator;
 import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
 import com.hotel.hoteladmin.utils.tables.Rooms;
+import com.hotel.hoteladmin.utils.tables.RoomsDetails;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
@@ -760,5 +761,28 @@ public class DButils {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static ObservableList<RoomsDetails> getSelectedRoomDetails(int selectedRoomNumber) {
+        DataBaseConnection connectNow = new DataBaseConnection();
+        Connection connectDB = connectNow.getDatabaseLink();
+        ObservableList<RoomsDetails> searchModelObservableList = null;
+        try {
+            PreparedStatement statement = connectDB.prepareStatement("SELECT bookingid,userid,start,end FROM calender WHERE roomid=?");
+            statement.setInt(1, selectedRoomNumber);
+            searchModelObservableList = FXCollections.observableArrayList();
+            ResultSet queryOutput = statement.executeQuery();
+            while (queryOutput.next()) {
+                Integer queryBookingId = queryOutput.getInt("bookingid");
+                Integer queryUserId = queryOutput.getInt("userid");
+                String queryCheckIn = queryOutput.getString("start");
+                String queryCheckOut = queryOutput.getString("end");
+                searchModelObservableList.add(new RoomsDetails(queryBookingId, queryUserId, queryCheckIn, queryCheckOut));
+            }
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return searchModelObservableList;
     }
 }

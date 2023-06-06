@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/tables/RoomsDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/controllers/LogInController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/app-main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hotel/hoteladmin/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +220,11 @@
       <workItem from="1685970255022" duration="295000" />
       <workItem from="1685973548130" duration="1845000" />
       <workItem from="1685976745436" duration="1759000" />
-      <workItem from="1686017931307" duration="4136000" />
+      <workItem from="1686017931307" duration="9203000" />
+      <workItem from="1686035438332" duration="3287000" />
+      <workItem from="1686039682217" duration="327000" />
+      <workItem from="1686040347459" duration="1561000" />
+      <workItem from="1686049600914" duration="1272000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -530,7 +534,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685975186323</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="add show Ip">
+      <created>1686022267305</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1686022267305</updated>
+    </task>
+    <task id="LOCAL-00046" summary="add show Ip">
+      <created>1686022304666</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1686022304666</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,14 +559,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="complete ExcelExport functionalities" />
     <MESSAGE value="disable past dates" />
     <MESSAGE value="update checkout disable past dates" />
     <MESSAGE value="Added Calendar table and remove status from rooms table" />
@@ -573,6 +596,7 @@
     <MESSAGE value="keep login stage as same as primaryStage" />
     <MESSAGE value="Added edit and update user profile functionalities from client side" />
     <MESSAGE value="fix modify booking" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix modify booking" />
+    <MESSAGE value="add show Ip" />
+    <option name="LAST_COMMIT_MESSAGE" value="add show Ip" />
   </component>
 </project>

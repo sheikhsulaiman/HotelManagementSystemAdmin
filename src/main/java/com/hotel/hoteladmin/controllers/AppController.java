@@ -8,6 +8,7 @@ import com.hotel.hoteladmin.utils.Value;
 import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
 import com.hotel.hoteladmin.utils.tables.Rooms;
+import com.hotel.hoteladmin.utils.tables.RoomsDetails;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -96,6 +97,19 @@ public class AppController implements Initializable {
 
     @FXML
     private TableView<Customers> tv_customers;
+    @FXML
+    private TableView<RoomsDetails> tv_roomDetails;
+    @FXML
+    private TableColumn<RoomsDetails, Integer> tc_rBookingid;
+
+    @FXML
+    private TableColumn<RoomsDetails, String> tc_rCheckIn;
+
+    @FXML
+    private TableColumn<RoomsDetails, String> tc_rCheckOut;
+
+    @FXML
+    private TableColumn<RoomsDetails, Integer> tc_rUserId;
 
     @FXML
     private Button cutomer_reload;
@@ -104,14 +118,7 @@ public class AppController implements Initializable {
     private Button btn_logOut;
 
     @FXML
-    private TextField tf_rRoomNumber;
-
-    @FXML
-    private ChoiceBox<String> cb_rRoomType;
-    @FXML
-    private ChoiceBox<String> cb_rRoomStatus;
-    @FXML
-    private Button btn_roomUpdate;
+    private Button btn_rdExcelExport;
 
     private Rooms room;
     private Bookings bookings;
@@ -127,12 +134,23 @@ public class AppController implements Initializable {
     void showIp(MouseEvent event) {
         l_ipAddress.setVisible(true);
     }
+
+    private int selectedRoomNumber;
     @FXML
     void selectRow(MouseEvent event) {
 
         room = tv_rooms.getSelectionModel().getSelectedItem();
-        tf_rRoomNumber.setText(Integer.toString(room.getRoomNumber()));
-        cb_rRoomType.setValue(room.getRoomType());
+        selectedRoomNumber = room.getRoomNumber();
+
+        // RoomsDetails Table
+        ObservableList<RoomsDetails> searchModelRoomsDetailsObservableList = DButils.getSelectedRoomDetails(selectedRoomNumber);
+
+        tc_rBookingid.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
+        tc_rUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        tc_rCheckIn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
+        tc_rCheckOut.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
+        tv_roomDetails.setItems(searchModelRoomsDetailsObservableList);
+
     }
 
 
@@ -157,20 +175,6 @@ public class AppController implements Initializable {
                 SceneSwitcher.changeSceneToNewWindow("../modifyBooking.fxml",title);
             }
         });
-        btn_roomUpdate.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                DButils.makeRoomVacant(room.getRoomNumber());
-            }
-        });
-
-        cb_rRoomStatus.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                cb_rRoomStatus.getItems().clear();
-                cb_rRoomStatus.getItems().add("vacant");
-            }
-        });
 
 
         btn_bExcelExport.setOnAction(new EventHandler<ActionEvent>() {
@@ -192,6 +196,13 @@ public class AppController implements Initializable {
             public void handle(ActionEvent event) {
                 ExcelExport<Rooms> bookingsExcelExport = new ExcelExport<>();
                 bookingsExcelExport.export(tv_rooms);
+            }
+        });
+        btn_rdExcelExport.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ExcelExport<RoomsDetails> bookingsExcelExport = new ExcelExport<>();
+                bookingsExcelExport.export(tv_roomDetails);
             }
         });
 
