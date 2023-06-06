@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e967175-3464-4dcd-a926-bad3497e10bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/utils/tables/RoomsDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/DButils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/hoteladmin/DButils/hotel.db" afterDir="false" />
@@ -224,7 +223,7 @@
       <workItem from="1686035438332" duration="3287000" />
       <workItem from="1686039682217" duration="327000" />
       <workItem from="1686040347459" duration="1561000" />
-      <workItem from="1686049600914" duration="1272000" />
+      <workItem from="1686049600914" duration="4767000" />
     </task>
     <task id="LOCAL-00001" summary="setup-initial-packages">
       <created>1685062933307</created>
@@ -548,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686022304666</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="add rooms details excel report button functionalities">
+      <created>1686050988028</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1686050988028</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +578,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="disable past dates" />
     <MESSAGE value="update checkout disable past dates" />
     <MESSAGE value="Added Calendar table and remove status from rooms table" />
     <MESSAGE value="removed status" />
@@ -597,6 +602,7 @@
     <MESSAGE value="Added edit and update user profile functionalities from client side" />
     <MESSAGE value="fix modify booking" />
     <MESSAGE value="add show Ip" />
-    <option name="LAST_COMMIT_MESSAGE" value="add show Ip" />
+    <MESSAGE value="add rooms details excel report button functionalities" />
+    <option name="LAST_COMMIT_MESSAGE" value="add rooms details excel report button functionalities" />
   </component>
 </project>

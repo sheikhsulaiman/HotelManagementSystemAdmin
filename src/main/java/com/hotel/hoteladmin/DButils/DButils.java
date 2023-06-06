@@ -393,6 +393,34 @@ public class DButils {
         }
         return list;
     }
+    public static void addRoom(int roomNumber,String roomType){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        try{
+            PreparedStatement insertRoomStm = connectDB.prepareStatement("INSERT INTO rooms VALUES (?,?)");
+            insertRoomStm.setInt(1,roomNumber);
+            insertRoomStm.setString(2,roomType);
+            insertRoomStm.executeUpdate();
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteRoom(int roomNumber){
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        Connection connectDB = dbConnection.getDatabaseLink();
+
+        try {
+            PreparedStatement deleteRoomStm = connectDB.prepareStatement("DELETE FROM rooms WHERE number=?");
+            deleteRoomStm.setInt(1,roomNumber);
+            deleteRoomStm.executeUpdate();
+            connectDB.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<String> getRoomType(){
         DataBaseConnection dbConnection = new DataBaseConnection();

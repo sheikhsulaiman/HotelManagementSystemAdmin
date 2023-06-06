@@ -86,7 +86,7 @@
                             <TableColumn fx:id="tc_rBookingid" prefWidth="128.0" text="Booking Id" />
                             <TableColumn fx:id="tc_rUserId" prefWidth="142.0" text="User Id" />
                               <TableColumn fx:id="tc_rCheckIn" minWidth="0.0" prefWidth="150.0" text="Check in" />
-                              <TableColumn fx:id="tc_rCheckOut" prefWidth="148.0" text="Check out" />
+                              <TableColumn fx:id="tc_rCheckOut" prefWidth="147.0" text="Check out" />
                           </columns>
                         </TableView>
                         <Line endX="-100.0" endY="476.0" layoutX="418.0" layoutY="8.0" startX="-100.0" startY="8.0" />
@@ -103,12 +103,12 @@
                               <FontIcon iconColor="WHITE" iconLiteral="fltral-delete-forever-24" iconSize="24" />
                            </graphic>
                         </Button>
-                        <TextField layoutX="471.0" layoutY="353.0" prefWidth="178.0">
+                        <TextField fx:id="tf_rNewRoomNumber" layoutX="471.0" layoutY="353.0" prefWidth="178.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </TextField>
-                        <TextField layoutX="471.0" layoutY="400.0" prefWidth="178.0">
+                        <TextField fx:id="tf_rNewRoomType" layoutX="471.0" layoutY="400.0" prefWidth="178.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -123,7 +123,7 @@
                               <Font name="Calibri" size="22.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btn_deleteRoom1" layoutX="471.0" layoutY="447.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="179.0" style="-fx-background-color: #3cb371;" text="Add Room" textFill="WHITE">
+                        <Button fx:id="btn_addRoom" layoutX="471.0" layoutY="447.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="179.0" style="-fx-background-color: #3cb371;" text="Add Room" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="16.0" />
                            </font>
