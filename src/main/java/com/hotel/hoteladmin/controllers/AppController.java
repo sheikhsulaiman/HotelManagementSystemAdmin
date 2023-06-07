@@ -162,6 +162,7 @@ public class AppController implements Initializable {
         tc_rCheckOut.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         tv_roomDetails.setItems(searchModelRoomsDetailsObservableList);
 
+        Search.roomDetailsSearch(tf_search,searchModelRoomsDetailsObservableList,tv_roomDetails);
     }
 
 

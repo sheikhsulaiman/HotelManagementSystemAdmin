@@ -3,6 +3,7 @@ package com.hotel.hoteladmin.utils;
 import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
 import com.hotel.hoteladmin.utils.tables.Rooms;
+import com.hotel.hoteladmin.utils.tables.RoomsDetails;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -124,4 +125,38 @@ public class Search {
         //Apply filtered and sorted data to the table view
         tableView.setItems(sortedData);
     }
-}
+    public static void roomDetailsSearch(TextField tf_keyword, ObservableList<RoomsDetails> searchModelRoomObservableList, TableView<RoomsDetails> tableView){
+        //initial filtered list
+        FilteredList<RoomsDetails> filteredData = new FilteredList<>(searchModelRoomObservableList, b->true);
+        tf_keyword.textProperty().addListener((observable,oldValue,newValue )->{
+            filteredData.setPredicate(searchModel -> {
+                // If no search value then display all records or whatever records is currently have. no changes.
+                if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
+                    return true;
+                }
+
+                String searchKeyword = newValue.toLowerCase();
+
+                if (searchModel.getBookingId().toString().indexOf(searchKeyword)>-1){
+                    return true; // Means we found a match in firstName
+                }else if(searchModel.getUserId().toString().indexOf(searchKeyword)>-1){
+                    return true; // means we found a match in lastname
+                }else if(searchModel.getCheckIn().toLowerCase().indexOf(searchKeyword)>-1){
+                    return true; // means we found a match in lastname
+                }else if(searchModel.getCheckOut().toLowerCase().indexOf(searchKeyword)>-1){
+                    return true; // means we found a match in lastname
+                }else {
+                    return false; // nothing to display
+                }
+            });
+        });
+
+        SortedList<RoomsDetails> sortedData = new SortedList<>(filteredData);
+
+        //Bind sorted data to the table
+        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+        //Apply filtered and sorted data to the table view
+        tableView.setItems(sortedData);
+    }
+ }
