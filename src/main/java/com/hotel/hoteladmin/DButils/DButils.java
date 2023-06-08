@@ -2,6 +2,7 @@ package com.hotel.hoteladmin.DButils;
 
 import com.hotel.hoteladmin.encryption.Encrypt;
 import com.hotel.hoteladmin.utils.daterangechecker.DateRangeComparator;
+import com.hotel.hoteladmin.utils.pricechart.PriceChart;
 import com.hotel.hoteladmin.utils.tables.Bookings;
 import com.hotel.hoteladmin.utils.tables.Customers;
 import com.hotel.hoteladmin.utils.tables.Rooms;
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DButils {
@@ -96,7 +98,6 @@ public class DButils {
             PreparedStatement updateBookingStatement = connectDB.prepareStatement("insert into bookings(roomno, userid, checkin, checkout, paymentmethod, paymentstatus, roomservice, poolaccess, carparking) values (?,?,?,?,?,?,?,?,?)");
             PreparedStatement updateCalenderStatement = connectDB.prepareStatement("insert into calender(roomid,userid,start,end,bookingid) values (?,?,?,?,?)");
             //PreparedStatement updateStatement = connectDB.prepareStatement("UPDATE rooms SET status='booked' WHERE number=?");
-
             //updateStatement.setInt(1,roomNo);
             updateBookingStatement.setInt(1,roomNo);
             updateCalenderStatement.setInt(1,roomNo);
@@ -119,7 +120,6 @@ public class DButils {
             updateCalenderStatement.setInt(5,bookingId);
             updateCalenderStatement.executeUpdate();
             connectDB.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
             //System.out.println("SQL Exception");
