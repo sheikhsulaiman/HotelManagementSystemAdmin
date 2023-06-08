@@ -6,6 +6,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -13,34 +15,52 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.hoteladmin.controllers.LogInController">
    <children>
-      <FontIcon iconLiteral="fltfmz-person-20" iconSize="60" layoutX="417.0" layoutY="111.0" />
-      <Line endX="-7.0" endY="166.0" layoutX="300.0" layoutY="190.0" startX="-7.0" startY="-139.0" />
-      <TextField fx:id="tf_userName" layoutX="335.0" layoutY="145.0" promptText="Id">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </TextField>
-      <PasswordField fx:id="pf_password" layoutX="335.0" layoutY="204.0" promptText="password">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </PasswordField>
-      <Button fx:id="btn_logIn" layoutX="335.0" layoutY="297.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #00BCA1;" text="Log In" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label fx:id="l_message" alignment="CENTER" layoutX="335.0" layoutY="262.0" prefHeight="17.0" prefWidth="224.0" textFill="RED" />
-      <FontIcon iconLiteral="fltral-building-skyscraper-24" iconSize="100" layoutX="98.0" layoutY="181.0" />
-      <Label layoutX="88.0" layoutY="200.0" text="hotel">
-         <font>
-            <Font name="Lucida Handwriting Italic" size="42.0" />
-         </font>
-      </Label>
-      <Circle fill="#3ed0f0" layoutX="581.0" layoutY="19.0" onMouseEntered="#showIp" onMouseExited="#hideIp" radius="5.0" stroke="#299bb2" strokeType="INSIDE" />
-      <Label fx:id="l_ipAddress" layoutX="477.0" layoutY="11.0" text="Label" textFill="#3ed0f0" visible="false" />
+      <HBox alignment="CENTER" fillHeight="false" layoutX="72.0" layoutY="50.5" AnchorPane.bottomAnchor="42.5" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="50.5">
+         <children>
+            <Pane>
+               <children>
+                  <FontIcon iconLiteral="fltfmz-person-20" iconSize="60" layoutX="300.0" layoutY="81.0" text="" />
+                  <Line endX="-7.0" endY="166.0" layoutX="201.0" layoutY="145.0" startX="-7.0" startY="-139.0" />
+                  <TextField fx:id="tf_userName" layoutX="228.0" layoutY="112.5" promptText="Id">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="pf_password" layoutX="228.0" layoutY="171.5" promptText="password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="btn_logIn" layoutX="228.0" layoutY="246.5" mnemonicParsing="false" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #00BCA1;" text="Log In" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <FontIcon iconLiteral="fltral-building-skyscraper-24" iconSize="100" layoutX="29.0" layoutY="134.0" />
+                  <Label layoutX="16.0" layoutY="188.5" text="hotel">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="42.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="53.0" layoutY="243.5" text="ADMIN" textFill="#00bca1">
+                     <font>
+                        <Font name="Entypo" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutY="119.5" text="big Mind Hotel" textFill="#00bca1">
+                     <font>
+                        <Font name="French Script MT" size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Label fx:id="l_message" alignment="CENTER" layoutX="299.0" layoutY="275.0" prefHeight="17.0" prefWidth="224.0" textFill="RED" />
+      <Circle fill="#3ed0f0" layoutX="581.0" layoutY="19.0" onMouseEntered="#showIp" onMouseExited="#hideIp" radius="5.0" stroke="#299bb2" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Label fx:id="l_ipAddress" layoutX="539.0" layoutY="11.0" text="Label" textFill="#3ed0f0" visible="false" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="11.0" />
    </children>
 </AnchorPane>

@@ -21,6 +21,12 @@ import java.util.ResourceBundle;
 public class ModifyBookingController implements Initializable {
 
     @FXML
+    public Button btn_lastUserId;
+    @FXML
+    public Button btn_confirmBooking;
+    @FXML
+    public RadioButton rBtn_print;
+    @FXML
     private Button btn_cancelBooking;
 
     @FXML
